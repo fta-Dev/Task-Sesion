@@ -1,0 +1,153 @@
+/* Reset and base styling */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-bg: #f5f5f5;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --start-btn-bg: #85d60c;
+    --start-btn-border: green;
+    --start-btn-text: #005000;
+    --start-btn-hover: #80ca10;
+    --end-btn-bg: #d60c0c;
+    --end-btn-border: #800000;
+    --end-btn-text: #500000;
+    --end-btn-hover: #ad0b0b;
+    --input-border: #ccc;
+    --input-focus: #85d60c;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    background-color: var(--primary-bg);
+    font-family: sans-serif;
+}
+
+/* Main container */
+.wrapper {
+    padding: 20px;
+    box-shadow: 0px 0px 15px 0.5px var(--card-shadow);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto; /* restored */
+    height: auto; /* restored */
+    border: none; /* preserved */
+}
+
+/* Task input container */
+.Task-Cont {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px 10px;
+    flex-wrap: wrap;
+}
+
+/* Inputs */
+.inputs {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--input-border);
+    text-align: center;
+    transition: border-color 0.2s ease;
+}
+
+.inputs:focus {
+    border-color: var(--input-focus);
+    outline: none;
+}
+
+/* Start button */
+#StartBtn {
+    padding: 7px; /* original */
+    background-color: var(--start-btn-bg);
+    border: 1px solid var(--start-btn-border);
+    color: var(--start-btn-text);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#StartBtn:hover {
+    background-color: var(--start-btn-hover);
+    box-shadow: 0px 0px 10px 4px var(--card-shadow);
+}
+
+/* Session started */
+.Started {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: monospace;
+    margin: 150px; /* original */
+    max-width: 500px; /* original */
+}
+
+/* Task name */
+.Task-Name {
+    font-size: 4em; /* original */
+    max-width: 500px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Countdown text */
+.Started span {
+    padding-block-start: 20px;
+    font-size: 20px;
+}
+
+/* End session button */
+#EndSession {
+    padding: 10px;
+    font-size: 15px;
+    width: 10em;
+    height: 3em;
+    background-color: var(--end-btn-bg);
+    border: 1px solid var(--end-btn-border);
+    color: var(--end-btn-text);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: relative;
+    top: 50px; /* original */
+}
+
+#EndSession:hover {
+    background-color: var(--end-btn-hover);
+    box-shadow: 0px 0px 10px 4px var(--card-shadow);
+}
+
+/* Toggle buttons */
+.toggle {
+    display: flex;
+    position: absolute;
+    top: -2px; /* original */
+    cursor: pointer;
+}
+
+.active {
+    display: none;
+}
+
+.not-active {
+    display: flex;
+}
+
+
+input:invalid{
+    border-color: red;
+}
+
+input:valid{
+    border-color: green;
+}
