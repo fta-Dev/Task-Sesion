@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Session</title>
-    <link rel="stylesheet" href="style.css">
-    <!--BOXICONS-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Session</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
 </head>
 <body>
 
-    <div class="wrapper">
-        <div class="Task-Cont">
-            <input type="text" id="input" placeholder="Enter Task Here" class="input">
-            <div class="optional-settings">
-                <details>
-                    <summary style="cursor: pointer; ">Optional Settings</summary>
-                    <input type="number" min="0" id="Minutes" class="input" placeholder="Enter Time in Minutes" style="padding: 5px; margin-top: 5px;"><br>
-                    <span style="position: relative; top: 3px; display: flex;">Darkmode: <div><box-icon name='toggle-left' class="toggle not-active"></box-icon> <box-icon type="solid" name='toggle-right' class="toggle active"></box-icon></div></span>
-                </details>
-            </div>
-            <button id="StartBtn">Start Session</button>
-            <p id="error" style="text-align: center; color: red; display: none;"></p>
-        </div>
-        <div class="Started">
-            <div style="position: relative; bottom: 30px;">
-            <h1 class="Task-Name">TaskName</h1>
-            <span style="display: flex; gap: 3px; text-align: center; justify-self: center;">Duration:<div class="duration">00:00</div></span>
-        </div>
-            <button id="EndSession">End Session</button>
-        </div>
-    </div>
-    
+  <div class="wrapper">
+    <div class="Task-Cont">
+      <input type="text" id="input" placeholder="Enter Task Here" class="inputs"/>
+      
+      <div class="optional-settings">
+        <details>
+          <summary style="cursor: pointer; font-weight: bold; text-align: center;">Settings</summary>
 
-    <audio id="alarmsound" src="mixkit-warning-alarm-buzzer-991.wav" preload="auto"></audio>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script src="script.js"></script>
+          <span>Duration (Mins):</span>
+          <input type="number" min="0" id="Minutes" class="inputs" placeholder="e.g., 25" style="width: 60px; text-align: center; margin-top: 10px;"/>
+
+          <div style="display: flex; align-items: center; margin: 5px 0;">
+            <span class="darkmode-label">
+             Darkmode: 
+    <div>
+        <box-icon name='toggle-left' class="toggle not-active"></box-icon> 
+        <box-icon type="solid" name='toggle-right' class="toggle active"></box-icon>
+    </div>
+</span>
+          </div>
+
+          <label for="Music">Background Music (Upload MP3):</label><br/>
+          <input type="file" id="Music" class="inputs" accept="audio/mpeg" style="display: none;"/>
+          <label for="Music" class="custom-file-input">
+              <span>Choose File</span>
+          </label>
+          <span id="file-name-display" class="file-name"></span>
+        </details>
+      </div>
+
+      <button id="StartBtn">Start Session</button>
+      <p id="error" style="text-align: center; color: red; display: none;"></p>
+    </div>
+
+    <div class="Started">
+      <div style="position: relative; bottom: 30px;">
+        <h1 class="Task-Name">TaskName</h1>
+        <span style="display: flex; gap: 3px; text-align: center; justify-self: center;">
+          Duration:<div class="duration">00:00</div>
+        </span>
+      </div>
+      <div class="">
+      <button id="EndSession">End Session</button>
+      <button id="PauseBtn">Pause</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="alarmsound" src="mixkit-warning-alarm-buzzer-991.wav" preload="auto"></audio>
+  <audio id="backgroundMusic" loop></audio>
+
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
