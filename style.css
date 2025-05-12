@@ -33,7 +33,7 @@ body {
     transition: .33s ease;
 }
 
-.wrapper {
+.Card {
     padding: 20px;
     box-shadow: 0px 0px 15px 0.5px var(--card-shadow);
     border-radius: 10px;
@@ -43,6 +43,72 @@ body {
     width: auto;
     height: auto;
     border: none;
+}
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+.Menu {
+    position: fixed;
+    left: 2.5em;
+    top: 2.5em;
+    padding: 13px 15px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s ease;
+    border-radius: 8px;
+    z-index: 100;
+}
+
+.Menu:hover{
+    color: gray;
+    box-shadow: 0px 0px 6px 0.5px var(--card-shadow);
+}
+
+.Menu-sidebar{
+   position: absolute;
+   left: 0;
+   height: 100%;
+   background-color: rgb(255, 255, 255);
+   box-shadow: 0px 0px 6px 0.5px var(--card-shadow);
+   animation: slide-in .5s ease forwards;
+   transform: translateX(-200px);
+   z-index: 101;
+}
+
+@keyframes slide-in {
+    100% {
+        transform: translateX(0px);
+    }
+    
+}
+
+.Sidebar{
+    width: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.Sidebar span{
+    box-shadow: 0px 0px 2px 1px var(--card-shadow);
+    width: 100%;
+    padding: 20px 50px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    transition: .33s;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.Sidebar span:hover{
+    background-color: rgb(243, 242, 242);
 }
 
 .Task-Cont {
@@ -104,7 +170,7 @@ body {
 }
 
 .custom-file-input {
-    display: inline-block;
+    display: flex;
     background-color: #4CAF50;
     color: white;
     padding: 5px 15px;
@@ -191,6 +257,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease;
+    text-align: center;
 }
 
 #StartBtn:hover {
@@ -300,4 +367,59 @@ input:valid {
     margin-block-end: 5px;
     align-items: center;
     gap: 2px;
+}
+
+/* Calc */
+
+.calculator {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+#display {
+  width: 100%;
+  height: 40px;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  gap: 10px;
+}
+
+button {
+  height: 50px;
+  font-size: 18px;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #d0d0d0;
+}
+
+.clear {
+  grid-column: span 4;
+  background: #ff7070;
+  color: white;
+}
+
+.ContentWrapper {
+    display: flex;
+    gap: 30px; /* space between session and calculator */
+    justify-content: center;
+    align-items: flex-start; /* or 'center' if you want them vertically aligned */
+    margin-top: 30px; /* optional spacing from top */
+    flex-wrap: wrap; /* responsive layout */
 }

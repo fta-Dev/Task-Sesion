@@ -9,7 +9,17 @@
 </head>
 <body>
 
-  <div class="wrapper">
+  <div class="Card Menu">Menu</div>
+
+  <div class="Menu-sidebar">
+    <nav class="Sidebar">
+      <span id="Session-Nav"><i class="bx bx-book-bookmark" ></i> Session</span>
+      <span id="Calculator-Nav"><i class='bx  bx-calculator'  ></i>  Calculator</span>
+    </nav>
+  </div>
+
+  <div class="ContentWrapper">
+  <div class="Card wrapper">
     <div class="Task-Cont">
       <input type="text" id="input" placeholder="Enter Task Here" class="inputs"/>
       
@@ -30,12 +40,14 @@
 </span>
           </div>
 
-          <label for="Music">Background Music (Upload MP3):</label><br/>
+          <div style="display: flex; align-items: center; gap: 2px;">
+          <label for="Music">Music:</label><br/>
           <input type="file" id="Music" class="inputs" accept="audio/mpeg" style="display: none;"/>
           <label for="Music" class="custom-file-input">
               <span>Choose File</span>
           </label>
           <span id="file-name-display" class="file-name"></span>
+          </div>
         </details>
       </div>
 
@@ -57,8 +69,44 @@
     </div>
   </div>
 
+
+  <div class="Card Cal-Wrapper">
+   <div class="calculator">
+  <input type="text" id="display" disabled />
+  <div class="buttons">
+    <button onclick="append('7')">7</button>
+    <button onclick="append('8')">8</button>
+    <button onclick="append('9')">9</button>
+    <button onclick="append('/')">÷</button>
+
+    <button onclick="append('4')">4</button>
+    <button onclick="append('5')">5</button>
+    <button onclick="append('6')">6</button>
+    <button onclick="append('*')">×</button>
+
+    <button onclick="append('1')">1</button>
+    <button onclick="append('2')">2</button>
+    <button onclick="append('3')">3</button>
+    <button onclick="append('-')">−</button>
+
+    <button onclick="append('0')">0</button>
+    <button onclick="append('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="append('+')">+</button>
+
+    <button onclick="clearDisplay()" class="clear">C</button>
+  </div>
+</div>
+
+  </div>
+
+    </div>
+
   <audio id="alarmsound" src="mixkit-warning-alarm-buzzer-991.wav" preload="auto"></audio>
   <audio id="backgroundMusic" loop></audio>
+
+  <div class="overlay">
+  </div>
 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="script.js"></script>

@@ -14,8 +14,50 @@ const MusicInput = document.getElementById("Music");
 const fileNameDisplay = document.getElementById("file-name-display");
 const PauseBtn = document.getElementById("PauseBtn");
 const alarmSound = document.getElementById("alarmsound");
+const Menu = document.querySelector(".Menu");
+const MenuCont = document.querySelector(".Menu-sidebar");
+const overlay = document.querySelector(".overlay");
+const SessionNav = document.getElementById("Session-Nav");
+const CalculatorNav = document.getElementById("Calculator-Nav");
+const wrapper = document.querySelector(".wrapper");
+const CalculatorWrapper = document.querySelector(".Cal-Wrapper")
+let activeTab = "session";
 
 Started.style.display = "none";
+MenuCont.style.display = "none";
+wrapper.style.display = "block";
+SessionNav.style.color = "Blue";
+
+function switchTab(tab) {
+    if(tab === "session"){
+        SessionNav.style.color = "blue";
+        wrapper.style.display = "block";
+        CalculatorNav.style.color =  "black";
+        if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
+    } else {
+        CalculatorNav.style.color = "blue";
+        SessionNav.style.color = "black";
+        wrapper.style.display = "none";
+        if(CalculatorWrapper) CalculatorWrapper.style.display = "block";
+    }
+
+    activeTab = tab;
+}
+
+SessionNav.addEventListener("click", () => switchTab("session"))
+CalculatorNav.addEventListener("click", () => switchTab("Calculator"))
+
+switchTab(activeTab);
+
+Menu.addEventListener("click", () => {
+    MenuCont.style.display = "block"; 
+    overlay.style.display = "block";
+})
+
+overlay.addEventListener("click", () => {
+    MenuCont.style.display = "none";
+    overlay.style.display = "none";
+})
 
 inputs.forEach(e => {
     e.classList.add("inputs");
@@ -138,3 +180,22 @@ MusicInput.addEventListener("change", () => {
     const fileName = MusicInput.files[0] ? MusicInput.files[0].name : "No file selected";
     fileNameDisplay.textContent = fileName;
 });
+
+// calc
+
+function append(value){
+    document.getElementById("display").value += value;
+}
+
+function calculate(){
+    try{
+        const result = eval(document.getElementById("display").value)
+        document.getElementById("display").value = result
+    } catch {
+        document.getElementById("display").value = "Error"
+    }
+}
+
+function clearDisplay(){
+    document.getElementById("display").value = ""
+}
