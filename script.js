@@ -165,6 +165,10 @@ EndSession.addEventListener("click", () => {
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
     }
+    if (alarmSound){
+        alarmSound.pause();
+        alarmSound.currentTime = 0;
+    }
     clearInterval(countdownTimer);
     TaskCont.style.display = "flex";
     Started.style.display = "none";

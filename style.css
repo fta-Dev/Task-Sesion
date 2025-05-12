@@ -393,6 +393,7 @@ input:valid {
   display: grid;
   grid-template-columns: repeat(4, 60px);
   gap: 10px;
+  justify-content: center;
 }
 
 button {
