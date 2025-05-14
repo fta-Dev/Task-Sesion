@@ -20,60 +20,92 @@ const overlay = document.querySelector(".overlay");
 const SessionNav = document.getElementById("Session-Nav");
 const CalculatorNav = document.getElementById("Calculator-Nav");
 const wrapper = document.querySelector(".wrapper");
-const CalculatorWrapper = document.querySelector(".Cal-Wrapper")
+const CalculatorWrapper = document.querySelector(".Cal-Wrapper");
+
 let activeTab = "session";
 
 Started.style.display = "none";
 MenuCont.style.display = "none";
 wrapper.style.display = "block";
-SessionNav.style.color = "Blue";
+SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+SessionNav.style.color = "white";
 
 function switchTab(tab) {
-    if(tab === "session"){
-        SessionNav.style.color = "blue";
+    if (tab === "session") {
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
         wrapper.style.display = "block";
-        CalculatorNav.style.color =  "black";
+        CalculatorNav.style.backgroundColor = "white";
+        SessionNav.style.color = "white";
+        CalculatorNav.style.color = "black";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
     } else {
-        CalculatorNav.style.color = "blue";
-        SessionNav.style.color = "black";
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.backgroundColor = "white";
         wrapper.style.display = "none";
-        if(CalculatorWrapper) CalculatorWrapper.style.display = "block";
+        SessionNav.style.color = "black";
+        CalculatorNav.style.color = "white";
+        if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
     }
-
     activeTab = tab;
 }
 
-SessionNav.addEventListener("click", () => switchTab("session"))
-CalculatorNav.addEventListener("click", () => switchTab("Calculator"))
+// Click events
+SessionNav.addEventListener("click", () => switchTab("session"));
+CalculatorNav.addEventListener("click", () => switchTab("calculator"));
+
+// Hover effects only if tab is not active
+SessionNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "session") {
+        SessionNav.classList.add("hover");
+    }
+});
+SessionNav.addEventListener("mouseleave", () => {
+    SessionNav.classList.remove("hover");
+});
+
+CalculatorNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "calculator") {
+        CalculatorNav.classList.add("hover");
+    }
+});
+CalculatorNav.addEventListener("mouseleave", () => {
+    CalculatorNav.classList.remove("hover");
+});
 
 switchTab(activeTab);
 
+// Menu
 Menu.addEventListener("click", () => {
-    MenuCont.style.display = "block"; 
+    MenuCont.style.display = "block";
     overlay.style.display = "block";
-})
+});
 
 overlay.addEventListener("click", () => {
     MenuCont.style.display = "none";
     overlay.style.display = "none";
-})
+});
 
+// Input classes
 inputs.forEach(e => {
     e.classList.add("inputs");
 });
 
+// Theme toggle
 function setTheme(isDark) {
-    document.body.style.backgroundColor = isDark ? "darkgray" : "white";
-    document.body.style.color = isDark ? "white" : "black";
+    document.body.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
+    document.body.style.color = isDark ? "rgb(199, 199, 199)" : "black";
+    MenuCont.style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
     notActiveToggle.style.display = isDark ? "none" : "flex";
+    Menu.style.color = isDark ? "white" : "black";
     ActiveToggle.style.display = isDark ? "flex" : "none";
+    taskInput.style.color = isDark ? "rgb(199, 199, 199)" : "black";
+    document.querySelector(".calculator").style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
 }
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
 
-// Globals
+// Timer
 let countdownTimer;
 let totalSeconds = 0;
 let backgroundMusic;
@@ -99,7 +131,6 @@ StartBtn.addEventListener("click", () => {
         return;
     }
 
-    // Set up music
     const musicFile = MusicInput.files[0];
     backgroundMusic = null;
 
@@ -121,7 +152,6 @@ StartBtn.addEventListener("click", () => {
     TaskName.textContent = taskInput.value.trim();
     PauseBtn.textContent = "Pause";
 
-    // Start countdown
     countdownTimer = setInterval(runTimer, 1000);
 });
 
@@ -165,7 +195,7 @@ EndSession.addEventListener("click", () => {
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
     }
-    if (alarmSound){
+    if (alarmSound) {
         alarmSound.pause();
         alarmSound.currentTime = 0;
     }
@@ -174,32 +204,29 @@ EndSession.addEventListener("click", () => {
     Started.style.display = "none";
 });
 
-// Format time as "mm:ss"
 function formatTime(unit) {
     return unit < 10 ? `0${unit}` : unit;
 }
 
-// Update file name display
 MusicInput.addEventListener("change", () => {
     const fileName = MusicInput.files[0] ? MusicInput.files[0].name : "No file selected";
     fileNameDisplay.textContent = fileName;
 });
 
-// calc
-
-function append(value){
+// Calculator
+function append(value) {
     document.getElementById("display").value += value;
 }
 
-function calculate(){
-    try{
-        const result = eval(document.getElementById("display").value)
-        document.getElementById("display").value = result
+function calculate() {
+    try {
+        const result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
     } catch {
-        document.getElementById("display").value = "Error"
+        document.getElementById("display").value = "Error";
     }
 }
 
-function clearDisplay(){
-    document.getElementById("display").value = ""
+function clearDisplay() {
+    document.getElementById("display").value = "";
 }
