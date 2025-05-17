@@ -445,3 +445,33 @@ button:hover {
     margin-top: 30px; /* optional spacing from top */
     flex-wrap: wrap; /* responsive layout */
 }
+
+/* history */
+
+#clearHistoryBtn {
+    background-color: var(--end-btn-bg);
+    color: var(--end-btn-text);
+    border: var(--end-btn-border);
+    padding: 0px 15px;
+    transition: .33s ease;
+    font-size: 17px;
+}
+
+#clearHistoryBtn:hover {
+    background-color: var(--end-btn-hover);
+}
+
+.history-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.history-list li {
+    background-color: #f4f4f4;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

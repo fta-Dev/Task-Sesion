@@ -21,11 +21,15 @@ const SessionNav = document.getElementById("Session-Nav");
 const CalculatorNav = document.getElementById("Calculator-Nav");
 const wrapper = document.querySelector(".wrapper");
 const CalculatorWrapper = document.querySelector(".Cal-Wrapper");
+const HistoryWrapper = document.getElementById("History");
+const HistoryNav = document.getElementById("History-Nav");
+
 
 let activeTab = "session";
 
 Started.style.display = "none";
 MenuCont.style.display = "none";
+HistoryWrapper.style.display = "none"
 wrapper.style.display = "block";
 SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
@@ -35,16 +39,35 @@ function switchTab(tab) {
         SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
         wrapper.style.display = "block";
         CalculatorNav.style.backgroundColor = "white";
+        HistoryNav.style.backgroundColor = "white";
         SessionNav.style.color = "white";
         CalculatorNav.style.color = "black";
+        HistoryNav.style.color = "black";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
+        if (HistoryWrapper) HistoryWrapper.style.display = "none";
     } else {
+        if(tab === "calculator") {
         CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
         SessionNav.style.backgroundColor = "white";
+        HistoryNav.style.backgroundColor = "white";
         wrapper.style.display = "none";
+        HistoryWrapper.style.display = "none";
         SessionNav.style.color = "black";
+        HistoryNav.style.color = "black";
         CalculatorNav.style.color = "white";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
+        }
+        else if(tab === "history") {
+            HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+            SessionNav.style.backgroundColor = "white";
+            CalculatorNav.style.backgroundColor = "white";
+            wrapper.style.display = "none";
+            CalculatorWrapper.style.display = "none";
+            SessionNav.style.color = "black";
+            CalculatorNav.style.color = "black";
+            HistoryNav.style.color = "white";
+            if (HistoryWrapper) HistoryWrapper.style.display = "block";
+        }
     }
     activeTab = tab;
 }
@@ -52,6 +75,7 @@ function switchTab(tab) {
 // Click events
 SessionNav.addEventListener("click", () => switchTab("session"));
 CalculatorNav.addEventListener("click", () => switchTab("calculator"));
+HistoryNav.addEventListener("click", () => switchTab("history"));
 
 // Hover effects only if tab is not active
 SessionNav.addEventListener("mouseenter", () => {
@@ -70,6 +94,15 @@ CalculatorNav.addEventListener("mouseenter", () => {
 });
 CalculatorNav.addEventListener("mouseleave", () => {
     CalculatorNav.classList.remove("hover");
+});
+
+HistoryNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "history") {
+        HistoryNav.classList.add("hover");
+    }
+});
+HistoryNav.addEventListener("mouseleave", () => {
+    HistoryNav.classList.remove("hover");
 });
 
 switchTab(activeTab);
@@ -201,12 +234,19 @@ EndSession.addEventListener("click", () => {
         alarmSound.currentTime = 0;
     }
     clearInterval(countdownTimer);
+    saveTaskToHistory(TaskName.textContent, getFormattedDuration());
     TaskCont.style.display = "flex";
     Started.style.display = "none";
 });
 
 function formatTime(unit) {
     return unit < 10 ? `0${unit}` : unit;
+}
+
+function getFormattedDuration() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${formatTime(minutes)}:${formatTime(seconds)}`;
 }
 
 MusicInput.addEventListener("change", () => {
@@ -230,4 +270,43 @@ function calculate() {
 
 function clearDisplay() {
     document.getElementById("display").value = "";
+}
+
+// =========================
+// === History Feature ====
+// =========================
+
+function saveTaskToHistory(taskName, duration) {
+    const history = JSON.parse(localStorage.getItem("taskHistory")) || [];
+    const timestamp = new Date().toLocaleString();
+    history.push({ taskName, duration, timestamp});
+    localStorage.setItem("taskHistory", JSON.stringify(history));
+}
+
+HistoryNav.addEventListener("click", () => {
+    renderHistory();
+})
+
+function renderHistory(){
+    const history = JSON.parse(localStorage.getItem("taskHistory") || "[]");
+    HistoryWrapper.innerHTML = `
+        <h2>Session History</h2>
+        ${history.length === 0 ? "<p>No session history yet.</p>" : ""}
+        <ul class="history-list">
+            ${history.map(item => `
+                <li>
+                    <strong>Task:</strong> ${item.taskName} <br>
+                    <strong>Duration:</strong> ${item.duration} <br>
+                    <strong>Completed At:</strong> ${item.timestamp}
+                </li>
+            `).join("")}
+        </ul>
+        <button id="clearHistoryBtn">Clear History</button>
+    `;
+
+    const clearBtn = document.getElementById("clearHistoryBtn");
+    clearBtn.addEventListener("click", () => {
+        localStorage.removeItem("taskHistory");
+        renderHistory()
+    })
 }
