@@ -198,10 +198,8 @@ function runTimer() {
             backgroundMusic.pause();
             backgroundMusic.currentTime = 0;
         }
-        alarmSound.play();
+        alarmSound.play().catch(err => console.log(`Failed to play alarm: ${err}`));
         alarmSound.onended = () => {
-            TaskCont.style.display = "flex";
-            Started.style.display = "none";
             alert("Time's up!");
         };
     } else {
