@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <div class="Card Menu">Menu</div>
+  <div class="Card Menu"><i class='bx  bx-menu' style="font-size: 30px;" ></i> </div>
 
   <div class="Menu-sidebar">
     <nav class="Sidebar">
@@ -22,16 +22,16 @@
     </nav>
   </div>
 
-  <div class="ContentWrapper">
+  <div class="ContentWrapper" style="z-index: 999;">
   <div class="Card wrapper">
     <div class="Task-Cont">
       <input type="text" id="input" placeholder="Enter Task Here" class="inputs"/>
       
       <div class="optional-settings">
         <details>
-          <summary style="cursor: pointer; font-weight: bold; text-align: center;">Settings</summary>
+          <summary style="cursor: pointer; font-weight: bold; text-align: center;">Settings <i class='bx  bx-cog' style="position: relative; top: 4px; font-size: 19px;"  ></i></summary>
 
-          <span>Duration (Mins):</span>
+          <span><i class='bx  bx-timer' style="font-size: 25px; position: relative; top: 4.5px; display: inline-block; margin-inline-end: -5px;"></i>  (Mins):</span>
           <input type="number" min="0" id="Minutes" class="inputs" placeholder="e.g., 25" style="width: 60px; text-align: center; margin-top: 10px;"/>
 
           <div style="display: flex; align-items: center; margin: 5px 0;">
@@ -45,12 +45,14 @@
           </div>
 
           <div style="display: flex; align-items: center; gap: 2px;">
-          <label for="Music">Music:</label><br/>
+          <label for="Music">Music:</label>
           <input type="file" id="Music" class="inputs" accept="audio/mpeg" style="display: none;"/>
           <label for="Music" class="custom-file-input">
               <span>Choose File</span>
           </label>
-          <span id="file-name-display" class="file-name"></span>
+          </div>
+                   <div>
+  <span id="file-name-display" class="file-name"></span>
           </div>
         </details>
       </div>

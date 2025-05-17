@@ -138,6 +138,7 @@ body {
     gap: 15px;
     padding: 5px 10px;
     flex-wrap: wrap;
+    z-index: 200;
 }
 
 .inputs {
@@ -213,13 +214,13 @@ body {
 }
 
 .custom-file-input span {
-    display: inline-block;
+    display: block;
     font-size: 14px;
 }
 
 /* File name display */
 .file-name {
-    display: inline-block;
+    display: block;
     margin-left: 0px;
     font-size: 14px;
     color: #666;
@@ -227,7 +228,6 @@ body {
    white-space: nowrap;         /* Prevent text from wrapping */
   overflow: hidden;            /* Hide overflow */
   text-overflow: ellipsis;     /* Show "..." for overflow */
-  vertical-align: middle;
     position: relative;
 
 }

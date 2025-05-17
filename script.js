@@ -100,6 +100,7 @@ function setTheme(isDark) {
     ActiveToggle.style.display = isDark ? "flex" : "none";
     taskInput.style.color = isDark ? "rgb(199, 199, 199)" : "black";
     document.querySelector(".calculator").style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
+    fileNameDisplay.style.color = isDark ? "rgb(182, 182, 182)" : "gray";
 }
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
