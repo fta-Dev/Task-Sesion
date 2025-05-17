@@ -25,6 +25,7 @@ const HistoryWrapper = document.getElementById("History");
 const HistoryNav = document.getElementById("History-Nav");
 
 
+
 let activeTab = "session";
 
 Started.style.display = "none";
@@ -296,7 +297,7 @@ function renderHistory(){
             ${history.map(item => `
                 <li>
                     <strong>Task:</strong> ${item.taskName} <br>
-                    <strong>Duration:</strong> ${item.duration} <br>
+                    <strong>Duration:</strong>  ${TimerInput.value.trim()}:00 - ${item.duration} <br>
                     <strong>Completed At:</strong> ${item.timestamp}
                 </li>
             `).join("")}
