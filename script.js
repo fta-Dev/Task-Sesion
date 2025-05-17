@@ -301,7 +301,7 @@ function renderHistory(){
                 </li>
             `).join("")}
         </ul>
-        <button id="clearHistoryBtn">Clear History</button>
+        <button id="clearHistoryBtn">Clear History  <i class='bx  bx-trash-alt' style="font-size: 20px; position:relative; top: 3px;"  ></i></button>
     `;
 
     const clearBtn = document.getElementById("clearHistoryBtn");
