@@ -10,6 +10,8 @@ const duration = document.querySelector(".duration");
 const EndSession = document.getElementById("EndSession");
 const notActiveToggle = document.querySelector(".not-active");
 const ActiveToggle = document.querySelector(".active");
+const notActiveToggleLED = document.querySelector(".not-active-led");
+const ActiveToggleLED = document.querySelector(".active-led");
 const MusicInput = document.getElementById("Music");
 const fileNameDisplay = document.getElementById("file-name-display");
 const PauseBtn = document.getElementById("PauseBtn");
@@ -139,6 +141,20 @@ function setTheme(isDark) {
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
+
+function setLights(isLed) {
+    notActiveToggleLED.style.display = isLed ? "none" : "flex";
+    ActiveToggleLED.style.display = isLed ? "flex" : "none";
+
+    if (isLed) {
+        document.body.classList.add("led-on");
+    } else {
+        document.body.classList.remove("led-on");
+    }
+}
+
+notActiveToggleLED.addEventListener("click", () => setLights(true));
+ActiveToggleLED.addEventListener("click", () => setLights(false));
 
 // Timer
 let countdownTimer;
