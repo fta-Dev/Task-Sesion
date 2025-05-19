@@ -14,24 +14,133 @@ const MusicInput = document.getElementById("Music");
 const fileNameDisplay = document.getElementById("file-name-display");
 const PauseBtn = document.getElementById("PauseBtn");
 const alarmSound = document.getElementById("alarmsound");
+const Menu = document.querySelector(".Menu");
+const MenuCont = document.querySelector(".Menu-sidebar");
+const overlay = document.querySelector(".overlay");
+const SessionNav = document.getElementById("Session-Nav");
+const CalculatorNav = document.getElementById("Calculator-Nav");
+const wrapper = document.querySelector(".wrapper");
+const CalculatorWrapper = document.querySelector(".Cal-Wrapper");
+const HistoryWrapper = document.getElementById("History");
+const HistoryNav = document.getElementById("History-Nav");
+
+
+
+let activeTab = "session";
 
 Started.style.display = "none";
+MenuCont.style.display = "none";
+HistoryWrapper.style.display = "none"
+wrapper.style.display = "block";
+SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+SessionNav.style.color = "white";
 
+function switchTab(tab) {
+    if (tab === "session") {
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+        wrapper.style.display = "block";
+        CalculatorNav.style.backgroundColor = "white";
+        HistoryNav.style.backgroundColor = "white";
+        SessionNav.style.color = "white";
+        CalculatorNav.style.color = "black";
+        HistoryNav.style.color = "black";
+        if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
+        if (HistoryWrapper) HistoryWrapper.style.display = "none";
+    } else {
+        if(tab === "calculator") {
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.backgroundColor = "white";
+        HistoryNav.style.backgroundColor = "white";
+        wrapper.style.display = "none";
+        HistoryWrapper.style.display = "none";
+        SessionNav.style.color = "black";
+        HistoryNav.style.color = "black";
+        CalculatorNav.style.color = "white";
+        if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
+        }
+        else if(tab === "history") {
+            HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+            SessionNav.style.backgroundColor = "white";
+            CalculatorNav.style.backgroundColor = "white";
+            wrapper.style.display = "none";
+            CalculatorWrapper.style.display = "none";
+            SessionNav.style.color = "black";
+            CalculatorNav.style.color = "black";
+            HistoryNav.style.color = "white";
+            if (HistoryWrapper) HistoryWrapper.style.display = "block";
+        }
+    }
+    activeTab = tab;
+}
+
+// Click events
+SessionNav.addEventListener("click", () => switchTab("session"));
+CalculatorNav.addEventListener("click", () => switchTab("calculator"));
+HistoryNav.addEventListener("click", () => switchTab("history"));
+
+// Hover effects only if tab is not active
+SessionNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "session") {
+        SessionNav.classList.add("hover");
+    }
+});
+SessionNav.addEventListener("mouseleave", () => {
+    SessionNav.classList.remove("hover");
+});
+
+CalculatorNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "calculator") {
+        CalculatorNav.classList.add("hover");
+    }
+});
+CalculatorNav.addEventListener("mouseleave", () => {
+    CalculatorNav.classList.remove("hover");
+});
+
+HistoryNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "history") {
+        HistoryNav.classList.add("hover");
+    }
+});
+HistoryNav.addEventListener("mouseleave", () => {
+    HistoryNav.classList.remove("hover");
+});
+
+switchTab(activeTab);
+
+// Menu
+Menu.addEventListener("click", () => {
+    MenuCont.style.display = "block";
+    overlay.style.display = "block";
+});
+
+overlay.addEventListener("click", () => {
+    MenuCont.style.display = "none";
+    overlay.style.display = "none";
+});
+
+// Input classes
 inputs.forEach(e => {
     e.classList.add("inputs");
 });
 
+// Theme toggle
 function setTheme(isDark) {
-    document.body.style.backgroundColor = isDark ? "darkgray" : "white";
-    document.body.style.color = isDark ? "white" : "black";
+    document.body.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
+    document.body.style.color = isDark ? "rgb(199, 199, 199)" : "black";
+    MenuCont.style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
     notActiveToggle.style.display = isDark ? "none" : "flex";
+    Menu.style.color = isDark ? "white" : "black";
     ActiveToggle.style.display = isDark ? "flex" : "none";
+    taskInput.style.color = isDark ? "rgb(199, 199, 199)" : "black";
+    document.querySelector(".calculator").style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
+    fileNameDisplay.style.color = isDark ? "rgb(182, 182, 182)" : "gray";
 }
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
 
-// Globals
+// Timer
 let countdownTimer;
 let totalSeconds = 0;
 let backgroundMusic;
@@ -57,7 +166,6 @@ StartBtn.addEventListener("click", () => {
         return;
     }
 
-    // Set up music
     const musicFile = MusicInput.files[0];
     backgroundMusic = null;
 
@@ -79,7 +187,6 @@ StartBtn.addEventListener("click", () => {
     TaskName.textContent = taskInput.value.trim();
     PauseBtn.textContent = "Pause";
 
-    // Start countdown
     countdownTimer = setInterval(runTimer, 1000);
 });
 
@@ -91,10 +198,8 @@ function runTimer() {
             backgroundMusic.pause();
             backgroundMusic.currentTime = 0;
         }
-        alarmSound.play();
+        alarmSound.play().catch(err => console.log(`Failed to play alarm: ${err}`));
         alarmSound.onended = () => {
-            TaskCont.style.display = "flex";
-            Started.style.display = "none";
             alert("Time's up!");
         };
     } else {
@@ -123,18 +228,84 @@ EndSession.addEventListener("click", () => {
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
     }
+    if (alarmSound) {
+        alarmSound.pause();
+        alarmSound.currentTime = 0;
+    }
     clearInterval(countdownTimer);
+    saveTaskToHistory(TaskName.textContent, getFormattedDuration());
     TaskCont.style.display = "flex";
     Started.style.display = "none";
 });
 
-// Format time as "mm:ss"
 function formatTime(unit) {
     return unit < 10 ? `0${unit}` : unit;
 }
 
-// Update file name display
+function getFormattedDuration() {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${formatTime(minutes)}:${formatTime(seconds)}`;
+}
+
 MusicInput.addEventListener("change", () => {
     const fileName = MusicInput.files[0] ? MusicInput.files[0].name : "No file selected";
     fileNameDisplay.textContent = fileName;
 });
+
+// Calculator
+function append(value) {
+    document.getElementById("display").value += value;
+}
+
+function calculate() {
+    try {
+        const result = eval(document.getElementById("display").value);
+        document.getElementById("display").value = result;
+    } catch {
+        document.getElementById("display").value = "Error";
+    }
+}
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+// =========================
+// === History Feature ====
+// =========================
+
+function saveTaskToHistory(taskName, duration) {
+    const history = JSON.parse(localStorage.getItem("taskHistory")) || [];
+    const timestamp = new Date().toLocaleString();
+    history.push({ taskName, duration, timestamp});
+    localStorage.setItem("taskHistory", JSON.stringify(history));
+}
+
+HistoryNav.addEventListener("click", () => {
+    renderHistory();
+})
+
+function renderHistory(){
+    const history = JSON.parse(localStorage.getItem("taskHistory") || "[]");
+    HistoryWrapper.innerHTML = `
+        <h2>Session History</h2>
+        ${history.length === 0 ? "<p>No session history yet.</p>" : ""}
+        <ul class="history-list">
+            ${history.map(item => `
+                <li>
+                    <strong>Task:</strong> ${item.taskName} <br>
+                    <strong>Duration:</strong>  ${TimerInput.value.trim()}:00 - ${item.duration} <br>
+                    <strong>Completed At:</strong> ${item.timestamp}
+                </li>
+            `).join("")}
+        </ul>
+        <button id="clearHistoryBtn">Clear History  <i class='bx  bx-trash-alt' style="font-size: 20px; position:relative; top: 3px;"  ></i></button>
+    `;
+
+    const clearBtn = document.getElementById("clearHistoryBtn");
+    clearBtn.addEventListener("click", () => {
+        localStorage.removeItem("taskHistory");
+        renderHistory()
+    })
+}

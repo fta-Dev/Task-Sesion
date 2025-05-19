@@ -6,18 +6,33 @@
   <title>Task Session</title>
   <link rel="stylesheet" href="style.css"/>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-  <div class="wrapper">
+  <div class="Card Menu"><i class='bx  bx-menu' style="font-size: 30px;" ></i> </div>
+
+  <div class="Menu-sidebar">
+    <nav class="Sidebar">
+      <h1 class="Menu-Title"><i class='bx  bx-home-alt' style="font-size: 30px; position: relative;
+      top: 2px; left: 3px;"></i> Menu</h1>
+      <span id="Session-Nav"><i class="bx bx-book-bookmark" style="font-size: 19px;"></i> Session</span>
+      <span id="Calculator-Nav"><i class='bx  bx-calculator' style="font-size: 19px;"></i>  Calculator</span>
+      <span id="History-Nav"><i class='bx  bx-history'  style="font-size: 19px;"></i>   History</span>
+    </nav>
+  </div>
+
+  <div class="ContentWrapper" style="z-index: 999;">
+  <div class="Card wrapper">
     <div class="Task-Cont">
       <input type="text" id="input" placeholder="Enter Task Here" class="inputs"/>
       
       <div class="optional-settings">
         <details>
-          <summary style="cursor: pointer; font-weight: bold; text-align: center;">Settings</summary>
+          <summary style="cursor: pointer; font-weight: bold; text-align: center;">Settings <i class='bx  bx-cog' style="position: relative; top: 4px; font-size: 19px;"  ></i></summary>
 
-          <span>Duration (Mins):</span>
+          <span><i class='bx  bx-timer' style="font-size: 25px; position: relative; top: 4.5px; display: inline-block; margin-inline-end: -5px;"></i>  (Mins):</span>
           <input type="number" min="0" id="Minutes" class="inputs" placeholder="e.g., 25" style="width: 60px; text-align: center; margin-top: 10px;"/>
 
           <div style="display: flex; align-items: center; margin: 5px 0;">
@@ -30,16 +45,20 @@
 </span>
           </div>
 
-          <label for="Music">Background Music (Upload MP3):</label><br/>
+          <div style="display: flex; align-items: center; gap: 2px;">
+          <label for="Music">Music:</label>
           <input type="file" id="Music" class="inputs" accept="audio/mpeg" style="display: none;"/>
           <label for="Music" class="custom-file-input">
               <span>Choose File</span>
           </label>
-          <span id="file-name-display" class="file-name"></span>
+          </div>
+                   <div>
+  <span id="file-name-display" class="file-name"></span>
+          </div>
         </details>
       </div>
 
-      <button id="StartBtn">Start Session</button>
+      <button id="StartBtn">Start Session </button>
       <p id="error" style="text-align: center; color: red; display: none;"></p>
     </div>
 
@@ -57,8 +76,57 @@
     </div>
   </div>
 
-  <audio id="alarmsound" src="mixkit-warning-alarm-buzzer-991.wav" preload="auto"></audio>
-  <audio id="backgroundMusic" loop></audio>
+
+  <div class="Card Cal-Wrapper">
+   <div class="calculator">
+  <input type="text" id="display" disabled />
+  <div class="buttons">
+    <button onclick="append('7')">7</button>
+    <button onclick="append('8')">8</button>
+    <button onclick="append('9')">9</button>
+    <button onclick="append('/')">÷</button>
+
+    <button onclick="append('4')">4</button>
+    <button onclick="append('5')">5</button>
+    <button onclick="append('6')">6</button>
+    <button onclick="append('*')">×</button>
+
+    <button onclick="append('1')">1</button>
+    <button onclick="append('2')">2</button>
+    <button onclick="append('3')">3</button>
+    <button onclick="append('-')">−</button>
+
+    <button onclick="append('0')">0</button>
+    <button onclick="append('.')">.</button>
+    <button onclick="calculate()">=</button>
+    <button onclick="append('+')">+</button>
+
+    <button onclick="clearDisplay()" class="clear">C</button>
+  </div>
+</div>
+
+  </div>
+
+  <div id="History" class="Card">
+    <div class="history-info">
+        <h2>Session History</h2>
+        <ul id="historylist"></ul>
+        </div>
+  </div>
+
+    </div>
+
+  
+
+  <audio id="alarmsound" preload="auto">
+  <source src="mixkit-warning-alarm-buzzer-991.mp3" type="audio/mpeg" />
+  <source src="mixkit-warning-alarm-buzzer-991.wav" type="audio/wav" />
+  Your browser does not support the audio element.
+</audio>
+
+
+  <div class="overlay">
+  </div>
 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="script.js"></script>
