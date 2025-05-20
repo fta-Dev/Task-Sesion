@@ -653,7 +653,7 @@ button:hover {
     margin: 20px 5px;
     padding: 0px 0px;
     text-align: center;
-    overflow: hidden;
+    overflow-x: auto;
     height: 40px;
 }
 
