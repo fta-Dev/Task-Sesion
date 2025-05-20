@@ -39,6 +39,7 @@ body {
     min-width: 400px;
     place-items: center;
     min-height: 100vh;
+    transition: .33s ease;
 }
 
 body::before {
