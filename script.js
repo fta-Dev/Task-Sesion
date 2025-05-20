@@ -25,6 +25,8 @@ const wrapper = document.querySelector(".wrapper");
 const CalculatorWrapper = document.querySelector(".Cal-Wrapper");
 const HistoryWrapper = document.getElementById("History");
 const HistoryNav = document.getElementById("History-Nav");
+const TodoWrapper = document.getElementById("Todo");
+const TodoNav = document.getElementById("Todo-Nav");
 
 
 
@@ -32,7 +34,8 @@ let activeTab = "session";
 
 Started.style.display = "none";
 MenuCont.style.display = "none";
-HistoryWrapper.style.display = "none"
+HistoryWrapper.style.display = "none";
+TodoWrapper.style.display = "none"
 wrapper.style.display = "block";
 SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
@@ -43,20 +46,26 @@ function switchTab(tab) {
         wrapper.style.display = "block";
         CalculatorNav.style.backgroundColor = "white";
         HistoryNav.style.backgroundColor = "white";
+        TodoNav.style.backgroundColor = "white";
         SessionNav.style.color = "white";
         CalculatorNav.style.color = "black";
         HistoryNav.style.color = "black";
+        TodoNav.style.color = "black";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
         if (HistoryWrapper) HistoryWrapper.style.display = "none";
+        if (TodoWrapper) TodoWrapper.style.display = "none";
     } else {
         if(tab === "calculator") {
         CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
         SessionNav.style.backgroundColor = "white";
         HistoryNav.style.backgroundColor = "white";
+        TodoNav.style.backgroundColor = "white";
         wrapper.style.display = "none";
         HistoryWrapper.style.display = "none";
+         TodoWrapper.style.display = "none";
         SessionNav.style.color = "black";
         HistoryNav.style.color = "black";
+        TodoNav.style.color = "black";
         CalculatorNav.style.color = "white";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
         }
@@ -64,12 +73,29 @@ function switchTab(tab) {
             HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
             SessionNav.style.backgroundColor = "white";
             CalculatorNav.style.backgroundColor = "white";
+            TodoNav.style.backgroundColor = "white";
+            wrapper.style.display = "none";
+            CalculatorWrapper.style.display = "none";
+            TodoWrapper.style.display = "none";
+            SessionNav.style.color = "black";
+            CalculatorNav.style.color = "black";
+            TodoNav.style.color = "black";
+            HistoryNav.style.color = "white";
+            if (HistoryWrapper) HistoryWrapper.style.display = "block";
+        }
+        else if(tab === "todo") {
+            TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
+            SessionNav.style.backgroundColor = "white";
+            CalculatorNav.style.backgroundColor = "white";
+            HistoryNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "white";
-            if (HistoryWrapper) HistoryWrapper.style.display = "block";
+            HistoryNav.style.color = "black";
+            HistoryWrapper.style.display = "none";
+            TodoNav.style.color = "white";
+            if (TodoWrapper) TodoWrapper.style.display = "block";
         }
     }
     activeTab = tab;
@@ -79,6 +105,7 @@ function switchTab(tab) {
 SessionNav.addEventListener("click", () => switchTab("session"));
 CalculatorNav.addEventListener("click", () => switchTab("calculator"));
 HistoryNav.addEventListener("click", () => switchTab("history"));
+TodoNav.addEventListener("click", () => switchTab("todo"));
 
 // Hover effects only if tab is not active
 SessionNav.addEventListener("mouseenter", () => {
@@ -106,6 +133,15 @@ HistoryNav.addEventListener("mouseenter", () => {
 });
 HistoryNav.addEventListener("mouseleave", () => {
     HistoryNav.classList.remove("hover");
+});
+
+TodoNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "todo") {
+        TodoNav.classList.add("hover");
+    }
+});
+TodoNav.addEventListener("mouseleave", () => {
+    TodoNav.classList.remove("hover");
 });
 
 switchTab(activeTab);
@@ -325,3 +361,97 @@ function renderHistory(){
         renderHistory()
     })
 }
+
+// Todo list
+
+const inputText = document.getElementById("inputText");
+const AddBtn = document.getElementById("AddBtn");
+const deleteallBtn = document.getElementById("deleteallBtn")
+let todos = document.getElementById("todos");
+let values = [];
+const savetodostorage = JSON.parse(localStorage.getItem("todos"))
+const savelinestorage = JSON.parse(localStorage.getItem("todotext")) || {};
+
+if(savetodostorage){
+    values = savetodostorage;
+    render();
+}
+
+
+AddBtn.addEventListener("click", function(){
+    if (inputText.value.trim() !== "") {  // Prevent empty todos
+        values.push(inputText.value);
+        inputText.value = "";
+        render();
+    }
+})
+
+function render(){
+
+    let todo = "";
+    for(let i = 0; i < values.length; i++){
+        let isCompleted = savelinestorage[values[i]] ? "line-through" : "none";
+        let color = savelinestorage[values[i]] ? "gray" : "none";
+      todo += `
+        <div class="item">
+        <p class="todoText" style="text-decoration: ${isCompleted}; color: ${color};"> ${values[i]} </p>
+        <button class="done">✔</button>
+        <button class="removeitemBtn"><div><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6m5 4v6m4-6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg></div></button>
+        </div>
+      `;
+    }
+    todos.innerHTML = todo;
+
+    if(values.length >= 2){
+        todos.style.border = "1px solid gray"
+        todos.style.overflowY = "scroll"
+    }
+    else{
+        todos.style.border = "none"
+        todos.style.overflowY = "hidden"
+    }
+
+    const doneButtons = document.querySelectorAll('.done');
+    doneButtons.forEach((button) => {
+        button.addEventListener('click', function (event) {
+            let todoItem = event.target.previousElementSibling;
+            let todoText = todoItem.textContent.trim();
+
+            if (savelinestorage[todoText]) {
+                delete savelinestorage[todoText]; // Remove line-through
+                todoItem.style.textDecoration = "none";
+                todoItem.style.color = "black";
+            } else {
+                savelinestorage[todoText] = true; // Add line-through
+                todoItem.style.textDecoration = "line-through";
+                todoItem.style.color = "gray";
+            }
+
+            localStorage.setItem("todotext", JSON.stringify(savelinestorage));
+        });
+    });
+    
+    const removeitemBtn = document.querySelectorAll(".removeitemBtn");
+    removeitemBtn.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            removethis(index)
+        });
+    });
+
+    localStorage.setItem("todos", JSON.stringify(values));
+}
+
+function removethis(index){
+    values.splice(index, 1);
+    render();
+    localStorage.setItem("todos", JSON.stringify(values));
+}
+
+deleteallBtn.addEventListener("dblclick", function(){
+    values = [];
+    localStorage.removeItem("todos");
+    localStorage.removeItem("todotext");
+    render();
+})

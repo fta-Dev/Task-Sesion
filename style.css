@@ -22,17 +22,23 @@
     --pause-btn-hover: #656565;
     --input-border: #ccc;
     --input-focus: #85d60c;
+    --button-bg-color: rgb(152, 255, 152);
+    --button-bg-color2: rgb(56, 249, 56);
+    --button-fontfamily: 'Courier New', Courier, monospace;
+    --text-fontfamily: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    --deleteBtn-bg-color: rgb(253, 138, 138);
+    --deleteBtn-bg-color2: rgb(249, 103, 103);
 }
 
 body {
-    min-height: 100vh;
-    display: grid;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    min-width: 400px;
     place-items: center;
-    background-color: var(--primary-bg);
-    font-family: 'Inter', sans-serif;
-    transition: .33s ease;
-    z-index: 0;
-    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 body::before {
@@ -513,9 +519,8 @@ button:hover {
 }
 
 .ContentWrapper {
-    display: flex;
-    gap: 30px; /* space between session and calculator */
     justify-content: center;
+    place-items: center;
     align-items: flex-start; /* or 'center' if you want them vertically aligned */
     margin-top: 30px; /* optional spacing from top */
     flex-wrap: wrap; /* responsive layout */
@@ -554,4 +559,148 @@ button:hover {
 #History {
     max-height: 400px;
     overflow: auto;
+}
+
+/* TODO LIST */
+
+.Container{
+    padding: 0px 20px;
+    text-align: center;
+}
+
+.Container .title{
+    font-size: 2.5em;
+    padding: 20px 0;
+
+}
+
+.IBD{
+    display: flex;
+    justify-content: center;
+}
+
+.deleteCONT{
+    margin-inline-start: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteCONT .deleteallBtn{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    background-color: var(--deleteBtn-bg-color);
+    border: 1px solid;
+    font-family: var(--button-fontfamily);
+    font-weight: 600;
+    border-radius: 100%;
+    width: 40px;
+    margin-block-start: 2px;
+    transition: all .33s ease;
+    height: 40px;
+    padding: 0px;
+}
+
+.deleteCONT .deleteallBtn:hover{
+    background-color: var(--deleteBtn-bg-color2);
+    cursor: pointer;
+}
+
+.Container .inputText{
+    border-radius: 10px 0 0 10px;
+    font-size: 16px;
+    border: 1px solid gray;
+    padding: 0px 10px;
+    border-right: none;
+    font-family: var(--text-fontfamily);
+    height: 40px;
+}
+
+.Container .AddBtn{
+    padding: 10px;
+    height: 40px;
+    font-size: 14px;
+    margin-inline-start: 0px;
+    border-radius: 0 10px 10px 0;
+    border: 1px solid gray;
+    transition: all .33s ease;
+    background-color: var(--button-bg-color);
+    font-family: var(--button-fontfamily);
+}
+
+.AddBtn:hover{
+    background-color: var(--button-bg-color2);
+    cursor: pointer;
+}
+
+.todos{
+    margin-block-start: 20px;
+    height: max-content;
+    max-height: 200px;
+    border-radius: 20px 0 0 20px;
+    padding: 0px 15px 0px  10px;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    margin: 20px 5px;
+    padding: 0px 0px;
+    text-align: center;
+    overflow: hidden;
+    height: 40px;
+}
+
+.item .todoText{
+    border: 1px solid gray;
+    padding: 10px;
+    width: 200px;
+    text-align: left;
+    overflow-x: auto;
+    font-family: var(--text-fontfamily);
+}
+
+.item .done{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 0px;
+    border-radius: 0px;
+    background-color: var(--button-bg-color);
+    border: 1px solid gray;
+    transition: all .33s ease;
+    font-family: var(--button-fontfamily);
+    font-weight: 600;
+    text-align: center;
+    align-items: center;
+}
+
+.item .done:hover{
+    background-color: var(--button-bg-color2);
+    cursor: pointer;
+}
+
+.item .removeitemBtn{
+    background-color: var(--deleteBtn-bg-color);
+    transition: all .33s ease;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid;
+    border-radius: 0 10px 10px 0;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: 0px;
+}
+
+.item .removeitemBtn:hover{
+    background-color: var(--deleteBtn-bg-color2);
+    cursor: pointer;
 }
