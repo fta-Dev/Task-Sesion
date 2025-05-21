@@ -366,10 +366,10 @@ function renderHistory(){
 
 const inputText = document.getElementById("inputText");
 const AddBtn = document.getElementById("AddBtn");
-const deleteallBtn = document.getElementById("deleteallBtn")
+const deleteallBtn = document.getElementById("deleteallBtn");
 let todos = document.getElementById("todos");
 let values = [];
-const savetodostorage = JSON.parse(localStorage.getItem("todos"))
+const savetodostorage = JSON.parse(localStorage.getItem("todos"));
 const savelinestorage = JSON.parse(localStorage.getItem("todotext")) || {};
 
 if(savetodostorage){
