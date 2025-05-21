@@ -705,3 +705,31 @@ button:hover {
     background-color: var(--deleteBtn-bg-color2);
     cursor: pointer;
 }
+
+/* schedule */
+
+table {
+    border-collapse: collapse;
+    color: black;
+    margin: 20px;
+}
+
+table tr td {
+    border: 1px solid;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 19px;
+}
+
+table tr td input {
+    border: none;
+    max-width: 120px;
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.title{
+    font-size: 20px;
+}

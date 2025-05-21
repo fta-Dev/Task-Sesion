@@ -27,6 +27,8 @@ const HistoryWrapper = document.getElementById("History");
 const HistoryNav = document.getElementById("History-Nav");
 const TodoWrapper = document.getElementById("Todo");
 const TodoNav = document.getElementById("Todo-Nav");
+const ScheduleWrapper = document.getElementById("Schedule");
+const ScheduleNav = document.getElementById("Schedule-Nav");
 
 
 
@@ -35,7 +37,8 @@ let activeTab = "session";
 Started.style.display = "none";
 MenuCont.style.display = "none";
 HistoryWrapper.style.display = "none";
-TodoWrapper.style.display = "none"
+TodoWrapper.style.display = "none";
+ScheduleWrapper.style.display = "none";
 wrapper.style.display = "block";
 SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
@@ -48,24 +51,30 @@ function switchTab(tab) {
         HistoryNav.style.backgroundColor = "white";
         TodoNav.style.backgroundColor = "white";
         SessionNav.style.color = "white";
+        ScheduleNav.style.backgroundColor = "white";
         CalculatorNav.style.color = "black";
         HistoryNav.style.color = "black";
         TodoNav.style.color = "black";
+        ScheduleNav.style.color = "black";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
         if (HistoryWrapper) HistoryWrapper.style.display = "none";
         if (TodoWrapper) TodoWrapper.style.display = "none";
+        if (ScheduleWrapper) ScheduleWrapper.style.display = "none";
     } else {
         if(tab === "calculator") {
         CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
         SessionNav.style.backgroundColor = "white";
         HistoryNav.style.backgroundColor = "white";
         TodoNav.style.backgroundColor = "white";
+        ScheduleNav.style.backgroundColor = "white";
         wrapper.style.display = "none";
         HistoryWrapper.style.display = "none";
          TodoWrapper.style.display = "none";
+          ScheduleWrapper.style.display = "none";
         SessionNav.style.color = "black";
         HistoryNav.style.color = "black";
         TodoNav.style.color = "black";
+        ScheduleNav.style.color = "black";
         CalculatorNav.style.color = "white";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
         }
@@ -74,12 +83,15 @@ function switchTab(tab) {
             SessionNav.style.backgroundColor = "white";
             CalculatorNav.style.backgroundColor = "white";
             TodoNav.style.backgroundColor = "white";
+            ScheduleNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
             TodoWrapper.style.display = "none";
+             ScheduleWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
             TodoNav.style.color = "black";
+            ScheduleNav.style.color = "black";
             HistoryNav.style.color = "white";
             if (HistoryWrapper) HistoryWrapper.style.display = "block";
         }
@@ -88,14 +100,34 @@ function switchTab(tab) {
             SessionNav.style.backgroundColor = "white";
             CalculatorNav.style.backgroundColor = "white";
             HistoryNav.style.backgroundColor = "white";
+            ScheduleNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
+            ScheduleWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
             HistoryNav.style.color = "black";
+            ScheduleNav.style.color = "black";
             HistoryWrapper.style.display = "none";
             TodoNav.style.color = "white";
             if (TodoWrapper) TodoWrapper.style.display = "block";
+        }
+        else if(tab === "schedule"){
+             ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
+            SessionNav.style.backgroundColor = "white";
+            CalculatorNav.style.backgroundColor = "white";
+            HistoryNav.style.backgroundColor = "white";
+            TodoNav.style.backgroundColor = "white";
+            wrapper.style.display = "none";
+            CalculatorWrapper.style.display = "none";
+            TodoWrapper.style.display = "none";
+            SessionNav.style.color = "black";
+            CalculatorNav.style.color = "black";
+            HistoryNav.style.color = "black";
+            TodoNav.style.color = "black";
+            HistoryWrapper.style.display = "none";
+            ScheduleNav.style.color = "white";
+            if (ScheduleWrapper) ScheduleWrapper.style.display = "block";
         }
     }
     activeTab = tab;
@@ -106,6 +138,7 @@ SessionNav.addEventListener("click", () => switchTab("session"));
 CalculatorNav.addEventListener("click", () => switchTab("calculator"));
 HistoryNav.addEventListener("click", () => switchTab("history"));
 TodoNav.addEventListener("click", () => switchTab("todo"));
+ScheduleNav.addEventListener("click", () => switchTab("schedule"));
 
 // Hover effects only if tab is not active
 SessionNav.addEventListener("mouseenter", () => {
@@ -142,6 +175,15 @@ TodoNav.addEventListener("mouseenter", () => {
 });
 TodoNav.addEventListener("mouseleave", () => {
     TodoNav.classList.remove("hover");
+});
+
+ScheduleNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "schedule") {
+        ScheduleNav.classList.add("hover");
+    }
+});
+ScheduleNav.addEventListener("mouseleave", () => {
+    ScheduleNav.classList.remove("hover");
 });
 
 switchTab(activeTab);
@@ -455,3 +497,36 @@ deleteallBtn.addEventListener("dblclick", function(){
     localStorage.removeItem("todotext");
     render();
 })
+
+// Schedule
+
+document.addEventListener("DOMContentLoaded", () => {
+  const titleInputs  = document.querySelectorAll(".titles");
+  const nameInputs   = document.querySelectorAll(".Name");
+
+  const savedTitles = JSON.parse(localStorage.getItem("titles"));
+  const savedNames  = JSON.parse(localStorage.getItem("names"));
+
+  if (savedTitles && savedTitles.length === titleInputs.length) {
+    titleInputs.forEach((input, i) => {
+      input.value = savedTitles[i];
+    });
+  }
+
+  if (savedNames && savedNames.length === nameInputs.length) {
+    nameInputs.forEach((input, i) => {
+      input.value = savedNames[i];
+    });
+  }
+
+  function saveInputs() {
+    const titles = Array.from(titleInputs).map(input => input.value);
+    const names  = Array.from(nameInputs).map(input => input.value);
+
+    localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("names", JSON.stringify(names));
+  }
+
+  titleInputs.forEach(input => input.addEventListener("input", saveInputs));
+  nameInputs.forEach(input => input.addEventListener("input", saveInputs));
+});
