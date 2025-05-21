@@ -544,4 +544,4 @@ const fullVer = "Version:v1.2.0";
 const parts = fullVer.split(":");
 
 // Add a space after the colon manually when reconstructing the HTML
-Version.innerHTML = `<strong>${parts[0]}:</strong> ${parts[1]}`;
+Version.innerHTML = `${parts[0]}: <strong>${parts[1]}</strong>`;
