@@ -29,6 +29,7 @@ const TodoWrapper = document.getElementById("Todo");
 const TodoNav = document.getElementById("Todo-Nav");
 const ScheduleWrapper = document.getElementById("Schedule");
 const ScheduleNav = document.getElementById("Schedule-Nav");
+const EveryInput = document.querySelectorAll("input");
 
 
 
@@ -208,6 +209,10 @@ inputs.forEach(e => {
 function setTheme(isDark) {
     document.body.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
     document.body.style.color = isDark ? "rgb(199, 199, 199)" : "black";
+     EveryInput.forEach(input => {
+        input.style.color = isDark ? "rgb(121, 121, 121)" : "black";
+        input.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
+    });
     MenuCont.style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
     notActiveToggle.style.display = isDark ? "none" : "flex";
     Menu.style.color = isDark ? "white" : "black";
@@ -530,3 +535,13 @@ document.addEventListener("DOMContentLoaded", () => {
   titleInputs.forEach(input => input.addEventListener("input", saveInputs));
   nameInputs.forEach(input => input.addEventListener("input", saveInputs));
 });
+
+
+// version
+
+const Version = document.querySelector(".Version");
+const fullVer = "Version:v1.2.0";
+const parts = fullVer.split(":");
+
+// Add a space after the colon manually when reconstructing the HTML
+Version.innerHTML = `<strong>${parts[0]}:</strong> ${parts[1]}`;
