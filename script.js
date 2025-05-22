@@ -587,7 +587,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // version
 
 const Version = document.querySelector(".Version");
-const fullVer = "Version:v1.2.0";
+const fullVer = "Version:v1.3.1";
 const parts = fullVer.split(":");
 
 // Add a space after the colon manually when reconstructing the HTML
