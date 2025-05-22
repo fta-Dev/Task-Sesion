@@ -30,7 +30,8 @@ const TodoNav = document.getElementById("Todo-Nav");
 const ScheduleWrapper = document.getElementById("Schedule");
 const ScheduleNav = document.getElementById("Schedule-Nav");
 const EveryInput = document.querySelectorAll("input");
-
+const AboutWrapper = document.getElementById("About");
+const AboutNav = document.getElementById("About-Nav");
 
 
 let activeTab = "session";
@@ -40,6 +41,7 @@ MenuCont.style.display = "none";
 HistoryWrapper.style.display = "none";
 TodoWrapper.style.display = "none";
 ScheduleWrapper.style.display = "none";
+AboutWrapper.style.display = "none";
 wrapper.style.display = "block";
 SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
@@ -53,14 +55,17 @@ function switchTab(tab) {
         TodoNav.style.backgroundColor = "white";
         SessionNav.style.color = "white";
         ScheduleNav.style.backgroundColor = "white";
+        AboutNav.style.backgroundColor = "white";
         CalculatorNav.style.color = "black";
         HistoryNav.style.color = "black";
         TodoNav.style.color = "black";
         ScheduleNav.style.color = "black";
+        AboutNav.style.color = "black";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
         if (HistoryWrapper) HistoryWrapper.style.display = "none";
         if (TodoWrapper) TodoWrapper.style.display = "none";
         if (ScheduleWrapper) ScheduleWrapper.style.display = "none";
+        if (AboutWrapper) AboutWrapper.style.display = "none";
     } else {
         if(tab === "calculator") {
         CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
@@ -68,14 +73,17 @@ function switchTab(tab) {
         HistoryNav.style.backgroundColor = "white";
         TodoNav.style.backgroundColor = "white";
         ScheduleNav.style.backgroundColor = "white";
+        AboutNav.style.backgroundColor = "white";
         wrapper.style.display = "none";
         HistoryWrapper.style.display = "none";
          TodoWrapper.style.display = "none";
           ScheduleWrapper.style.display = "none";
+          AboutWrapper.style.display = "none";
         SessionNav.style.color = "black";
         HistoryNav.style.color = "black";
         TodoNav.style.color = "black";
         ScheduleNav.style.color = "black";
+        AboutNav.style.color = "black";
         CalculatorNav.style.color = "white";
         if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
         }
@@ -85,14 +93,17 @@ function switchTab(tab) {
             CalculatorNav.style.backgroundColor = "white";
             TodoNav.style.backgroundColor = "white";
             ScheduleNav.style.backgroundColor = "white";
+            AboutNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
             TodoWrapper.style.display = "none";
              ScheduleWrapper.style.display = "none";
+             AboutWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
             TodoNav.style.color = "black";
             ScheduleNav.style.color = "black";
+            AboutNav.style.color = "black";
             HistoryNav.style.color = "white";
             if (HistoryWrapper) HistoryWrapper.style.display = "block";
         }
@@ -102,13 +113,16 @@ function switchTab(tab) {
             CalculatorNav.style.backgroundColor = "white";
             HistoryNav.style.backgroundColor = "white";
             ScheduleNav.style.backgroundColor = "white";
+            AboutNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
             ScheduleWrapper.style.display = "none";
+            AboutWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
             HistoryNav.style.color = "black";
             ScheduleNav.style.color = "black";
+            AboutNav.style.color = "black";
             HistoryWrapper.style.display = "none";
             TodoNav.style.color = "white";
             if (TodoWrapper) TodoWrapper.style.display = "block";
@@ -119,16 +133,39 @@ function switchTab(tab) {
             CalculatorNav.style.backgroundColor = "white";
             HistoryNav.style.backgroundColor = "white";
             TodoNav.style.backgroundColor = "white";
+            AboutNav.style.backgroundColor = "white";
             wrapper.style.display = "none";
             CalculatorWrapper.style.display = "none";
             TodoWrapper.style.display = "none";
+            AboutWrapper.style.display = "none";
             SessionNav.style.color = "black";
             CalculatorNav.style.color = "black";
             HistoryNav.style.color = "black";
             TodoNav.style.color = "black";
+            AboutNav.style.color = "black";
             HistoryWrapper.style.display = "none";
             ScheduleNav.style.color = "white";
             if (ScheduleWrapper) ScheduleWrapper.style.display = "block";
+        }
+        else if(tab === "about"){
+            AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
+            SessionNav.style.backgroundColor = "white";
+            CalculatorNav.style.backgroundColor = "white";
+            HistoryNav.style.backgroundColor = "white";
+            TodoNav.style.backgroundColor = "white";
+            ScheduleNav.style.backgroundColor = "white";
+            wrapper.style.display = "none";
+            CalculatorWrapper.style.display = "none";
+            TodoWrapper.style.display = "none";
+            ScheduleWrapper.style.display = "none";
+            SessionNav.style.color = "black";
+            CalculatorNav.style.color = "black";
+            HistoryNav.style.color = "black";
+            TodoNav.style.color = "black";
+            ScheduleNav.style.color = "black";
+            AboutNav.style.color = "white";
+            HistoryWrapper.style.display = "none";
+            if (AboutWrapper) AboutWrapper.style.display = "block";
         }
     }
     activeTab = tab;
@@ -140,6 +177,7 @@ CalculatorNav.addEventListener("click", () => switchTab("calculator"));
 HistoryNav.addEventListener("click", () => switchTab("history"));
 TodoNav.addEventListener("click", () => switchTab("todo"));
 ScheduleNav.addEventListener("click", () => switchTab("schedule"));
+AboutNav.addEventListener("click", () => switchTab("about"));
 
 // Hover effects only if tab is not active
 SessionNav.addEventListener("mouseenter", () => {
@@ -185,6 +223,15 @@ ScheduleNav.addEventListener("mouseenter", () => {
 });
 ScheduleNav.addEventListener("mouseleave", () => {
     ScheduleNav.classList.remove("hover");
+});
+
+AboutNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "about") {
+        AboutNav.classList.add("hover");
+    }
+});
+AboutNav.addEventListener("mouseleave", () => {
+    AboutNav.classList.remove("hover");
 });
 
 switchTab(activeTab);

@@ -117,12 +117,86 @@ body.led-on::before {
     color: #777;
 }
 
+/* About */
+
+#About {
+    max-width: 400px;
+    padding: 2em 2em 0 2em;
+    line-height: 1.9em;
+    text-align: center;
+    border: 1px solid;
+}
+
+.About-title {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.Social-cont{
+    margin: 10px 0;
+}
+
+.social {
+    margin: 10px 0;
+}
+
+.social a svg{
+    text-decoration: none;
+    color: gray;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: .33s ease;
+}
+
+.social a.insta svg{
+    color: rgb(255, 125, 3);
+}
+.social a.facebook svg{
+    color: blue;
+}
+
+.social a.youtube svg{
+    color: red;
+}
+
+.social a.twitter svg{
+    color: lightblue;
+}
+
+.social a.insta svg:hover{
+    transform: translateY(-2px);
+    color: rgb(188, 79, 2);
+}
+
+.social a.facebook svg:hover{
+    transform: translateY(-2px);
+    color: rgb(2, 2, 138);
+}
+
+.social a.youtube svg:hover{
+    transform: translateY(-2px);
+    color: rgb(148, 1, 1);
+}
+
+.social a.twitter svg:hover{
+    transform: translateY(-2px);
+    color: rgb(122, 154, 165);
+}
+
+.Social-title{
+    font-family: monospace;
+    font-weight: 500;
+}
+
+
+
 /*  */
 
 .Card {
     padding: 20px;
     box-shadow: 0px 0px 15px 0.5px var(--card-shadow);
     border-radius: 10px;
+    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
