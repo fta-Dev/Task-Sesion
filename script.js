@@ -27,6 +27,16 @@ const HistoryWrapper = document.getElementById("History");
 const HistoryNav = document.getElementById("History-Nav");
 const TodoWrapper = document.getElementById("Todo");
 const TodoNav = document.getElementById("Todo-Nav");
+const ScheduleWrapper = document.getElementById("Schedule");
+const ScheduleNav = document.getElementById("Schedule-Nav");
+const EveryInput = document.querySelectorAll("input");
+const AboutWrapper = document.getElementById("About");
+const AboutNav = document.getElementById("About-Nav");
+const FeedbackWrapper = document.getElementById("feedback");
+const FeedbackNav = document.getElementById("Feedback-Nav");
+
+const saveTheme = JSON.parse(localStorage.getItem("Theme"));
+const saveLights = JSON.parse(localStorage.getItem("ThemeLights"))
 
 
 
@@ -35,77 +45,83 @@ let activeTab = "session";
 Started.style.display = "none";
 MenuCont.style.display = "none";
 HistoryWrapper.style.display = "none";
-TodoWrapper.style.display = "none"
+TodoWrapper.style.display = "none";
+ScheduleWrapper.style.display = "none";
+AboutWrapper.style.display = "none";
+FeedbackWrapper.style.display = "none";
 wrapper.style.display = "block";
 SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
 
 function switchTab(tab) {
-    if (tab === "session") {
-        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
-        wrapper.style.display = "block";
-        CalculatorNav.style.backgroundColor = "white";
-        HistoryNav.style.backgroundColor = "white";
-        TodoNav.style.backgroundColor = "white";
-        SessionNav.style.color = "white";
-        CalculatorNav.style.color = "black";
-        HistoryNav.style.color = "black";
-        TodoNav.style.color = "black";
-        if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
-        if (HistoryWrapper) HistoryWrapper.style.display = "none";
-        if (TodoWrapper) TodoWrapper.style.display = "none";
-    } else {
-        if(tab === "calculator") {
-        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
-        SessionNav.style.backgroundColor = "white";
-        HistoryNav.style.backgroundColor = "white";
-        TodoNav.style.backgroundColor = "white";
-        wrapper.style.display = "none";
-        HistoryWrapper.style.display = "none";
-         TodoWrapper.style.display = "none";
-        SessionNav.style.color = "black";
-        HistoryNav.style.color = "black";
-        TodoNav.style.color = "black";
-        CalculatorNav.style.color = "white";
-        if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
-        }
-        else if(tab === "history") {
-            HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            TodoNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            TodoWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            TodoNav.style.color = "black";
-            HistoryNav.style.color = "white";
-            if (HistoryWrapper) HistoryWrapper.style.display = "block";
-        }
-        else if(tab === "todo") {
-            TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            HistoryNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "black";
-            HistoryWrapper.style.display = "none";
-            TodoNav.style.color = "white";
-            if (TodoWrapper) TodoWrapper.style.display = "block";
-        }
-    }
-    activeTab = tab;
+  activeTab = tab;
+
+  const navTabs = [SessionNav, CalculatorNav, HistoryNav, TodoNav, ScheduleNav, AboutNav, FeedbackNav];
+  const wrappers = [wrapper, CalculatorWrapper, HistoryWrapper, TodoWrapper, ScheduleWrapper, AboutWrapper, FeedbackWrapper];
+
+  // Hide all wrappers
+  wrappers.forEach(w => w && (w.style.display = "none"));
+
+  // Reset all nav styles to default (white bg, black text)
+  navTabs.forEach(nav => {
+    nav.style.backgroundColor = "white";
+    nav.style.color = "black";
+
+    nav.classList.remove("hover");
+  });
+
+  // Show the selected wrapper and set active nav style
+  switch (tab) {
+    case "session":
+      wrapper.style.display = "block";
+      SessionNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      SessionNav.style.color = "white";
+      break;
+    case "calculator":
+      CalculatorWrapper.style.display = "block";
+      CalculatorNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      CalculatorNav.style.color = "white";
+      break;
+    case "history":
+      HistoryWrapper.style.display = "block";
+      HistoryNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      HistoryNav.style.color = "white";
+      break;
+    case "todo":
+      TodoWrapper.style.display = "block";
+      TodoNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      TodoNav.style.color = "white";
+      break;
+    case "schedule":
+      ScheduleWrapper.style.display = "block";
+      ScheduleNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      ScheduleNav.style.color = "white";
+      break;
+    case "about":
+      AboutWrapper.style.display = "block";
+      AboutNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      AboutNav.style.color = "white";
+      break;
+    case "feedback":
+      FeedbackWrapper.style.display = "block";
+      FeedbackNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      FeedbackNav.style.color = "white";
+      break;
+  }
+
+  // After switching tab, also update theme styles in case theme is dark
+  setTheme(document.body.classList.contains("dark"));
 }
+
 
 // Click events
 SessionNav.addEventListener("click", () => switchTab("session"));
 CalculatorNav.addEventListener("click", () => switchTab("calculator"));
 HistoryNav.addEventListener("click", () => switchTab("history"));
 TodoNav.addEventListener("click", () => switchTab("todo"));
+ScheduleNav.addEventListener("click", () => switchTab("schedule"));
+AboutNav.addEventListener("click", () => switchTab("about"));
+FeedbackNav.addEventListener("click", () => switchTab("feedback"));
 
 // Hover effects only if tab is not active
 SessionNav.addEventListener("mouseenter", () => {
@@ -144,6 +160,33 @@ TodoNav.addEventListener("mouseleave", () => {
     TodoNav.classList.remove("hover");
 });
 
+ScheduleNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "schedule") {
+        ScheduleNav.classList.add("hover");
+    }
+});
+ScheduleNav.addEventListener("mouseleave", () => {
+    ScheduleNav.classList.remove("hover");
+});
+
+AboutNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "about") {
+        AboutNav.classList.add("hover");
+    }
+});
+AboutNav.addEventListener("mouseleave", () => {
+    AboutNav.classList.remove("hover");
+});
+
+FeedbackNav.addEventListener("mouseenter", () => {
+    if (activeTab !== "feedback") {
+        FeedbackNav.classList.add("hover");
+    }
+});
+FeedbackNav.addEventListener("mouseleave", () => {
+    FeedbackNav.classList.remove("hover");
+});
+
 switchTab(activeTab);
 
 // Menu
@@ -163,20 +206,126 @@ inputs.forEach(e => {
 });
 
 // Theme toggle
+
+const navitems = document.querySelectorAll(".nav-item");
+
+navitems.forEach(item => {
+  item.addEventListener("click", () => {
+    // Remove ActiveDark from all nav items first
+    navitems.forEach(i => i.classList.remove("ActiveDark"));
+
+    // Only add ActiveDark if dark mode is active
+    if (document.body.classList.contains("dark")) {
+      item.classList.add("ActiveDark");
+    }
+  });
+});
+
+
 function setTheme(isDark) {
-    document.body.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
-    document.body.style.color = isDark ? "rgb(199, 199, 199)" : "black";
-    MenuCont.style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
-    notActiveToggle.style.display = isDark ? "none" : "flex";
-    Menu.style.color = isDark ? "white" : "black";
-    ActiveToggle.style.display = isDark ? "flex" : "none";
-    taskInput.style.color = isDark ? "rgb(199, 199, 199)" : "black";
-    document.querySelector(".calculator").style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
-    fileNameDisplay.style.color = isDark ? "rgb(182, 182, 182)" : "gray";
+  document.body.classList.toggle("dark", isDark);
+
+  notActiveToggle.style.display = isDark ? "none" : "flex";
+  ActiveToggle.style.display = isDark ? "flex" : "none";
+
+
+  // Reset all tabs to default light/dark colors
+  const navTabs = [SessionNav, CalculatorNav, HistoryNav, TodoNav, ScheduleNav, AboutNav, FeedbackNav];
+
+
+  
+  navTabs.forEach(tab => {
+    if (isDark) {
+      tab.style.backgroundColor = "white";  // default non-active dark mode bg
+      tab.style.color = "black";  // default non-active dark mode text
+
+      localStorage.setItem("Theme", JSON.stringify(isDark));           
+    } else {
+      tab.style.backgroundColor = "white";  // default light mode bg
+      tab.style.color = "black";   // default light mode text
+      localStorage.setItem("Theme", JSON.stringify(isDark));    
+    }
+  });
+
+  // Now set active tab style depending on dark or light mode
+  if (isDark) {
+    // Active tab gets blue background + white text in dark mode
+    switch (activeTab) {
+      case "session":
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.color = "white";
+        break;
+      case "calculator":
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        CalculatorNav.style.color = "white";
+        break;
+      case "history":
+        HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+        HistoryNav.style.color = "white";
+        break;
+      case "todo":
+        TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
+        TodoNav.style.color = "white";
+        break;
+      case "schedule":
+        ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
+        ScheduleNav.style.color = "white";
+        break;
+      case "about":
+        AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
+        AboutNav.style.color = "white";
+        break;
+      case "feedback":
+        FeedbackNav.style.backgroundColor = "rgb(84, 78, 251)";
+        FeedbackNav.style.color = "white";
+        break;
+    }
+    localStorage.setItem("Theme", JSON.stringify(isDark));
+  } else {
+    // Light mode active tab style (looks like your original switchTab)
+    switch (activeTab) {
+      case "session":
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.color = "white";
+        break;
+      case "calculator":
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        CalculatorNav.style.color = "white";
+        break;
+      case "history":
+        HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+        HistoryNav.style.color = "white";
+        break;
+      case "todo":
+        TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
+        TodoNav.style.color = "white";
+        break;
+      case "schedule":
+        ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
+        ScheduleNav.style.color = "white";
+        break;
+      case "about":
+        AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
+        AboutNav.style.color = "white";
+        break;
+      case "feedback":
+        FeedbackNav.style.backgroundColor = "rgb(84, 78, 251)";
+        FeedbackNav.style.color = "white";
+        break;
+    }
+    localStorage.setItem("Theme", JSON.stringify(isDark));
+  }
 }
+
+
+
+
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
+
+setTheme(saveTheme);
+
 
 function setLights(isLed) {
     notActiveToggleLED.style.display = isLed ? "none" : "flex";
@@ -184,13 +333,17 @@ function setLights(isLed) {
 
     if (isLed) {
         document.body.classList.add("led-on");
+        localStorage.setItem("ThemeLights", JSON.stringify(isLed));
     } else {
         document.body.classList.remove("led-on");
+        localStorage.setItem("ThemeLights", JSON.stringify(isLed));
     }
 }
 
 notActiveToggleLED.addEventListener("click", () => setLights(true));
 ActiveToggleLED.addEventListener("click", () => setLights(false));
+
+setLights(saveLights);
 
 // Timer
 let countdownTimer;
@@ -366,10 +519,10 @@ function renderHistory(){
 
 const inputText = document.getElementById("inputText");
 const AddBtn = document.getElementById("AddBtn");
-const deleteallBtn = document.getElementById("deleteallBtn")
+const deleteallBtn = document.getElementById("deleteallBtn");
 let todos = document.getElementById("todos");
 let values = [];
-const savetodostorage = JSON.parse(localStorage.getItem("todos"))
+const savetodostorage = JSON.parse(localStorage.getItem("todos"));
 const savelinestorage = JSON.parse(localStorage.getItem("todotext")) || {};
 
 if(savetodostorage){
@@ -455,3 +608,46 @@ deleteallBtn.addEventListener("dblclick", function(){
     localStorage.removeItem("todotext");
     render();
 })
+
+// Schedule
+
+document.addEventListener("DOMContentLoaded", () => {
+  const titleInputs  = document.querySelectorAll(".titles");
+  const nameInputs   = document.querySelectorAll(".Name");
+
+  const savedTitles = JSON.parse(localStorage.getItem("titles"));
+  const savedNames  = JSON.parse(localStorage.getItem("names"));
+
+  if (savedTitles && savedTitles.length === titleInputs.length) {
+    titleInputs.forEach((input, i) => {
+      input.value = savedTitles[i];
+    });
+  }
+
+  if (savedNames && savedNames.length === nameInputs.length) {
+    nameInputs.forEach((input, i) => {
+      input.value = savedNames[i];
+    });
+  }
+
+  function saveInputs() {
+    const titles = Array.from(titleInputs).map(input => input.value);
+    const names  = Array.from(nameInputs).map(input => input.value);
+
+    localStorage.setItem("titles", JSON.stringify(titles));
+    localStorage.setItem("names", JSON.stringify(names));
+  }
+
+  titleInputs.forEach(input => input.addEventListener("input", saveInputs));
+  nameInputs.forEach(input => input.addEventListener("input", saveInputs));
+});
+
+
+// version
+
+const Version = document.querySelector(".Version");
+const fullVer = "Version:v2.5.3";
+const parts = fullVer.split(":");
+
+// Add a space after the colon manually when reconstructing the HTML
+Version.innerHTML = `${parts[0]}: <strong>${parts[1]}</strong>`;

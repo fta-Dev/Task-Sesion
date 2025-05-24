@@ -11,6 +11,17 @@
 </head>
 <body>
 
+<div style="display: flex; align-items: center; position: fixed; top: 10px; right: 30px; padding: 10px; z-index: 1100; font-size: 17px;">
+<span class="darkmode-label">Darkmode: 
+    <div>
+        <box-icon name='toggle-left' class="toggle not-active" style="height: 27px; width: 27px;"></box-icon> 
+        <box-icon type="solid" name='toggle-right' class="toggle active" style="height: 27px; width: 27px;"></box-icon>
+    </div>
+</span>
+</div>
+
+ <p class="Version"></p>
+
 
   <div class="Card Menu"><i class='bx  bx-menu' style="font-size: 30px;" ></i> </div>
 
@@ -18,10 +29,13 @@
     <nav class="Sidebar">
       <h1 class="Menu-Title"><i class='bx  bx-home-alt' style="font-size: 30px; position: relative;
       top: 2px; left: 3px;"></i> Menu</h1>
-      <span id="Session-Nav"><i class="bx bx-book-bookmark" style="font-size: 19px;"></i> Session</span>
-      <span id="Calculator-Nav"><i class='bx  bx-calculator' style="font-size: 19px;"></i>  Calculator</span>
-      <span id="History-Nav"><i class='bx  bx-history'  style="font-size: 19px;"></i>   History</span>
-      <span id="Todo-Nav"><i class='bx  bx-clipboard'  style="font-size: 17px;" ></i>    Todo List</span>
+      <span id="Session-Nav" class="nav-item"><i class="bx bx-book-bookmark" style="font-size: 19px;"></i> Session</span>
+      <span id="Calculator-Nav" class="nav-item"><i class='bx  bx-calculator' style="font-size: 19px;"></i>  Calculator</span>
+      <span id="History-Nav" class="nav-item"><i class='bx  bx-history'  style="font-size: 19px;"></i>   History</span>
+      <span id="Todo-Nav" class="nav-item"><i class='bx  bx-clipboard'  style="font-size: 17px;" ></i>    Todo List</span>
+      <span id="Schedule-Nav" class="nav-item"><i class='bx  bx-calendar-alt'  style="font-size: 18px;" ></i>    Schedule</span>
+      <span id="About-Nav" class="nav-item"><i class='bx  bx-info-circle'  style="font-size: 18px;" ></i>    About</span>
+      <span id="Feedback-Nav" class="nav-item"><i class='bx  bx-message-detail' style="font-size: 18px;" ></i>   Feedback</span>
     </nav>
   </div>
 
@@ -36,16 +50,6 @@
 
           <span><i class='bx  bx-timer' style="font-size: 25px; position: relative; top: 4.5px; display: inline-block; margin-inline-end: -5px;"></i>  (Mins):</span>
           <input type="number" min="0" id="Minutes" class="inputs" placeholder="e.g., 25" style="width: 60px; text-align: center; margin-top: 10px;"/>
-
-          <div style="display: flex; align-items: center; margin: 5px 0;">
-            <span class="darkmode-label">
-             Darkmode: 
-    <div>
-        <box-icon name='toggle-left' class="toggle not-active"></box-icon> 
-        <box-icon type="solid" name='toggle-right' class="toggle active"></box-icon>
-    </div>
-</span>
-          </div>
 
           <div style="display: flex; align-items: center; margin: 5px 0;">
             <span class="ledlights-label">
@@ -91,7 +95,7 @@
 
   <div class="Card Cal-Wrapper">
    <div class="calculator">
-  <input type="text" id="display" disabled />
+  <input type="text" id="display" placeholder="0" disabled />
   <div class="buttons">
     <button onclick="append('7')">7</button>
     <button onclick="append('8')">8</button>
@@ -128,12 +132,12 @@
 
     </div>
 
-    <div id="Todo" class="Card">
+    <div id="Todo" class="Card" style=" z-index: 1005;">
  <div id="Container" class="Container">
     <h1 class="title">My Todo list</h1>
 
 <div class="IBD">
-    <input type="text" id="inputText" class="inputText">
+    <input type="text" id="inputText" class="inputText" placeholder="Task...">
     <button id="AddBtn" class="AddBtn">Add</button>
     <div class="deleteCONT">
         <button id="deleteallBtn" class="deleteallBtn"><div><svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,6 +156,92 @@
 
     </div>
 
+ <div id="Schedule" class="Card">
+  <table class="schedule-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th><input class="titles" type="text" placeholder="Enter Title 1" /></th>
+        <th><input class="titles" type="text" placeholder="Enter Title 2" /></th>
+        <th><input class="titles" type="text" placeholder="Enter Title 3" /></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monday</td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+      </tr>
+      <tr>
+        <td>Wednesday</td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+        <td><input type="text" class="Name" placeholder="Type Here" /></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+  <div class="Card" id="About" style=" z-index: 1005;">
+    <h1 class="About-title">🧑 About Me</h1>
+    <p>
+Hi, I’m Fouad — a front-end developer with a passion for building cool web experiences I’m currently working on this website/tool, and I enjoy bringing ideas to life with languages like HTML, CSS, JavaScript.
+
+This site is where I showcase my work, experiments, and projects. I’m always learning something new and pushing myself to improve.
+
+When I’m not coding, I’m probably playing football.
+    </p>
+    <div class="Social-cont" >
+      <h1 class="Social-title">Socials</h1>
+      <div class="social">
+      <a class="insta a" href="https://www.instagram.com/fouad.t.ali/?hl=en" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram-icon lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+      <a class="facebook a" href="https://www.facebook.com/actor.fouad.ali/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook-icon lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+      <a class="youtube a" href="https://www.youtube.com/@MysticQuest2" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube-icon lucide-youtube"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+      <a class="twitter a" href="https://www.twitter.com/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter-icon lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+    </div>
+  </div>
+  </div>
+
+  <div id="feedback" class="Card" style=" z-index: 1005;">
+    <form  action="https://formspree.io/f/xeogbjrd" method="POST" class="feedback-form">
+      <h2>We’d love your feedback</h2>
+
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" placeholder="Enter name here..." required/>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" placeholder="Enter email here..." required />
+
+      <label for="message">Message:</label>
+      <textarea name="message" id="message" placeholder="Enter message here..." required></textarea>
+
+      <button type="submit">Send Feedback</button>
+    </form>
+  </div>
+
   
 
   <audio id="alarmsound" preload="auto">
@@ -163,6 +253,9 @@
 
   <div class="overlay">
   </div>
+
+ 
+  <p class="CopyWrite">&copy;All rights reserved by Fouad Ali</p>
 
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
   <script src="script.js"></script>
