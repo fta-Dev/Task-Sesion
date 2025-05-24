@@ -26,6 +26,7 @@
       <span id="Todo-Nav"><i class='bx  bx-clipboard'  style="font-size: 17px;" ></i>    Todo List</span>
       <span id="Schedule-Nav"><i class='bx  bx-calendar-alt'  style="font-size: 18px;" ></i>    Schedule</span>
       <span id="About-Nav"><i class='bx  bx-info-circle'  style="font-size: 18px;" ></i>    About</span>
+      <span id="Feedback-Nav"><i class='bx  bx-message-detail' style="font-size: 18px;" ></i>   Feedback</span>
     </nav>
   </div>
 
@@ -226,6 +227,25 @@ When I’m not coding, I’m probably playing football.
       <a class="twitter a" href="https://www.twitter.com/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter-icon lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
     </div>
   </div>
+  </div>
+
+  <div id="feedback" class="Card">
+    <form  action="https://formspree.io/f/xeogbjrd" method="POST" class="feedback-form">
+      <h2>We’d love your feedback</h2>
+
+      <input type="hidden" name="_captcha" value="false">
+
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" />
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" />
+
+      <label for="message">Message:</label>
+      <textarea name="message" id="message"></textarea>
+
+      <button type="submit">Send Feedback</button>
+    </form>
   </div>
 
   
