@@ -874,7 +874,7 @@ table tr td input {
 }
 
 .feedback-form textarea {
-  resize: vertical;
+  resize: none;
   min-height: 100px;
 }
 
