@@ -35,6 +35,11 @@ const AboutNav = document.getElementById("About-Nav");
 const FeedbackWrapper = document.getElementById("feedback");
 const FeedbackNav = document.getElementById("Feedback-Nav");
 
+const saveTheme = JSON.parse(localStorage.getItem("Theme"));
+const saveLights = JSON.parse(localStorage.getItem("ThemeLights"))
+
+
+
 let activeTab = "session";
 
 Started.style.display = "none";
@@ -223,16 +228,22 @@ function setTheme(isDark) {
   notActiveToggle.style.display = isDark ? "none" : "flex";
   ActiveToggle.style.display = isDark ? "flex" : "none";
 
+
   // Reset all tabs to default light/dark colors
   const navTabs = [SessionNav, CalculatorNav, HistoryNav, TodoNav, ScheduleNav, AboutNav, FeedbackNav];
+
+
   
   navTabs.forEach(tab => {
     if (isDark) {
       tab.style.backgroundColor = "white";  // default non-active dark mode bg
-      tab.style.color = "black";             // default non-active dark mode text
+      tab.style.color = "black";  // default non-active dark mode text
+
+      localStorage.setItem("Theme", JSON.stringify(isDark));           
     } else {
       tab.style.backgroundColor = "white";  // default light mode bg
-      tab.style.color = "black";             // default light mode text
+      tab.style.color = "black";   // default light mode text
+      localStorage.setItem("Theme", JSON.stringify(isDark));    
     }
   });
 
@@ -269,6 +280,7 @@ function setTheme(isDark) {
         FeedbackNav.style.color = "white";
         break;
     }
+    localStorage.setItem("Theme", JSON.stringify(isDark));
   } else {
     // Light mode active tab style (looks like your original switchTab)
     switch (activeTab) {
@@ -301,6 +313,7 @@ function setTheme(isDark) {
         FeedbackNav.style.color = "white";
         break;
     }
+    localStorage.setItem("Theme", JSON.stringify(isDark));
   }
 }
 
@@ -311,19 +324,26 @@ function setTheme(isDark) {
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
 
+setTheme(saveTheme);
+
+
 function setLights(isLed) {
     notActiveToggleLED.style.display = isLed ? "none" : "flex";
     ActiveToggleLED.style.display = isLed ? "flex" : "none";
 
     if (isLed) {
         document.body.classList.add("led-on");
+        localStorage.setItem("ThemeLights", JSON.stringify(isLed));
     } else {
         document.body.classList.remove("led-on");
+        localStorage.setItem("ThemeLights", JSON.stringify(isLed));
     }
 }
 
 notActiveToggleLED.addEventListener("click", () => setLights(true));
 ActiveToggleLED.addEventListener("click", () => setLights(false));
+
+setLights(saveLights);
 
 // Timer
 let countdownTimer;

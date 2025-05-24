@@ -11,6 +11,15 @@
 </head>
 <body>
 
+<div style="display: flex; align-items: center; position: fixed; top: 10px; right: 30px; padding: 10px; z-index: 1100; font-size: 17px;">
+<span class="darkmode-label">Darkmode: 
+    <div>
+        <box-icon name='toggle-left' class="toggle not-active" style="height: 27px; width: 27px;"></box-icon> 
+        <box-icon type="solid" name='toggle-right' class="toggle active" style="height: 27px; width: 27px;"></box-icon>
+    </div>
+</span>
+</div>
+
  <p class="Version"></p>
 
 
@@ -41,16 +50,6 @@
 
           <span><i class='bx  bx-timer' style="font-size: 25px; position: relative; top: 4.5px; display: inline-block; margin-inline-end: -5px;"></i>  (Mins):</span>
           <input type="number" min="0" id="Minutes" class="inputs" placeholder="e.g., 25" style="width: 60px; text-align: center; margin-top: 10px;"/>
-
-          <div style="display: flex; align-items: center; margin: 5px 0;">
-            <span class="darkmode-label">
-             Darkmode: 
-    <div>
-        <box-icon name='toggle-left' class="toggle not-active"></box-icon> 
-        <box-icon type="solid" name='toggle-right' class="toggle active"></box-icon>
-    </div>
-</span>
-          </div>
 
           <div style="display: flex; align-items: center; margin: 5px 0;">
             <span class="ledlights-label">
