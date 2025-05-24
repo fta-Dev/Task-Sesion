@@ -49,170 +49,65 @@ SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
 SessionNav.style.color = "white";
 
 function switchTab(tab) {
-    if (tab === "session") {
-        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
-        wrapper.style.display = "block";
-        CalculatorNav.style.backgroundColor = "white";
-        HistoryNav.style.backgroundColor = "white";
-        TodoNav.style.backgroundColor = "white";
-        SessionNav.style.color = "white";
-        ScheduleNav.style.backgroundColor = "white";
-        AboutNav.style.backgroundColor = "white";
-        FeedbackNav.style.backgroundColor = "white";
-        CalculatorNav.style.color = "black";
-        HistoryNav.style.color = "black";
-        TodoNav.style.color = "black";
-        ScheduleNav.style.color = "black";
-        AboutNav.style.color = "black";
-        FeedbackNav.style.color = "black";
-        if (CalculatorWrapper) CalculatorWrapper.style.display = "none";
-        if (HistoryWrapper) HistoryWrapper.style.display = "none";
-        if (TodoWrapper) TodoWrapper.style.display = "none";
-        if (ScheduleWrapper) ScheduleWrapper.style.display = "none";
-        if (AboutWrapper) AboutWrapper.style.display = "none";
-        if (FeedbackWrapper) FeedbackWrapper.style.display = "none";
-    } else {
-        if(tab === "calculator") {
-        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
-        SessionNav.style.backgroundColor = "white";
-        HistoryNav.style.backgroundColor = "white";
-        TodoNav.style.backgroundColor = "white";
-        ScheduleNav.style.backgroundColor = "white";
-        AboutNav.style.backgroundColor = "white";
-        FeedbackNav.style.backgroundColor = "white";
-        wrapper.style.display = "none";
-        HistoryWrapper.style.display = "none";
-         TodoWrapper.style.display = "none";
-          ScheduleWrapper.style.display = "none";
-          AboutWrapper.style.display = "none";
-          FeedbackWrapper.style.display = "none";
-        SessionNav.style.color = "black";
-        HistoryNav.style.color = "black";
-        TodoNav.style.color = "black";
-        ScheduleNav.style.color = "black";
-        AboutNav.style.color = "black";
-        FeedbackNav.style.color = "black";
-        CalculatorNav.style.color = "white";
-        if (CalculatorWrapper) CalculatorWrapper.style.display = "block";
-        }
-        else if(tab === "history") {
-            HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            TodoNav.style.backgroundColor = "white";
-            ScheduleNav.style.backgroundColor = "white";
-            AboutNav.style.backgroundColor = "white";
-            FeedbackNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            TodoWrapper.style.display = "none";
-             ScheduleWrapper.style.display = "none";
-             AboutWrapper.style.display = "none";
-             FeedbackWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            TodoNav.style.color = "black";
-            ScheduleNav.style.color = "black";
-            AboutNav.style.color = "black";
-            FeedbackNav.style.color = "black";
-            HistoryNav.style.color = "white";
-            if (HistoryWrapper) HistoryWrapper.style.display = "block";
-        }
-        else if(tab === "todo") {
-            TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            HistoryNav.style.backgroundColor = "white";
-            ScheduleNav.style.backgroundColor = "white";
-            AboutNav.style.backgroundColor = "white";
-            FeedbackNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            ScheduleWrapper.style.display = "none";
-            AboutWrapper.style.display = "none";
-            FeedbackWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "black";
-            ScheduleNav.style.color = "black";
-            AboutNav.style.color = "black";
-            FeedbackNav.style.color = "black";
-            HistoryWrapper.style.display = "none";
-            TodoNav.style.color = "white";
-            if (TodoWrapper) TodoWrapper.style.display = "block";
-        }
-        else if(tab === "schedule"){
-             ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            HistoryNav.style.backgroundColor = "white";
-            TodoNav.style.backgroundColor = "white";
-            AboutNav.style.backgroundColor = "white";
-            FeedbackNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            TodoWrapper.style.display = "none";
-            AboutWrapper.style.display = "none";
-            FeedbackWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "black";
-            TodoNav.style.color = "black";
-            AboutNav.style.color = "black";
-            FeedbackNav.style.color = "black";
-            HistoryWrapper.style.display = "none";
-            ScheduleNav.style.color = "white";
-            if (ScheduleWrapper) ScheduleWrapper.style.display = "block";
-        }
-        else if(tab === "about"){
-            AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            HistoryNav.style.backgroundColor = "white";
-            TodoNav.style.backgroundColor = "white";
-            ScheduleNav.style.backgroundColor = "white";
-            FeedbackNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            TodoWrapper.style.display = "none";
-            ScheduleWrapper.style.display = "none";
-            FeedbackWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "black";
-            TodoNav.style.color = "black";
-            ScheduleNav.style.color = "black";
-            FeedbackNav.style.color = "black";
-            AboutNav.style.color = "white";
-            HistoryWrapper.style.display = "none";
-            if (AboutWrapper) AboutWrapper.style.display = "block";
-        }
-        else if(tab === "feedback"){
-            FeedbackNav.style.backgroundColor = "rgb(84, 78, 251)";
-            SessionNav.style.backgroundColor = "white";
-            CalculatorNav.style.backgroundColor = "white";
-            HistoryNav.style.backgroundColor = "white";
-            TodoNav.style.backgroundColor = "white";
-            AboutNav.style.backgroundColor = "white";
-            ScheduleNav.style.backgroundColor = "white";
-            wrapper.style.display = "none";
-            CalculatorWrapper.style.display = "none";
-            TodoWrapper.style.display = "none";
-            ScheduleWrapper.style.display = "none";
-            AboutWrapper.style.display = "none";
-            SessionNav.style.color = "black";
-            CalculatorNav.style.color = "black";
-            HistoryNav.style.color = "black";
-            TodoNav.style.color = "black";
-            ScheduleNav.style.color = "black";
-            AboutNav.style.color = "black";
-            FeedbackNav.style.color = "white";
-            HistoryWrapper.style.display = "none";
-            if (FeedbackWrapper) FeedbackWrapper.style.display = "block";
-        }
-    }
-    activeTab = tab;
+  activeTab = tab;
+
+  const navTabs = [SessionNav, CalculatorNav, HistoryNav, TodoNav, ScheduleNav, AboutNav, FeedbackNav];
+  const wrappers = [wrapper, CalculatorWrapper, HistoryWrapper, TodoWrapper, ScheduleWrapper, AboutWrapper, FeedbackWrapper];
+
+  // Hide all wrappers
+  wrappers.forEach(w => w && (w.style.display = "none"));
+
+  // Reset all nav styles to default (white bg, black text)
+  navTabs.forEach(nav => {
+    nav.style.backgroundColor = "white";
+    nav.style.color = "black";
+
+    nav.classList.remove("hover");
+  });
+
+  // Show the selected wrapper and set active nav style
+  switch (tab) {
+    case "session":
+      wrapper.style.display = "block";
+      SessionNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      SessionNav.style.color = "white";
+      break;
+    case "calculator":
+      CalculatorWrapper.style.display = "block";
+      CalculatorNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      CalculatorNav.style.color = "white";
+      break;
+    case "history":
+      HistoryWrapper.style.display = "block";
+      HistoryNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      HistoryNav.style.color = "white";
+      break;
+    case "todo":
+      TodoWrapper.style.display = "block";
+      TodoNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      TodoNav.style.color = "white";
+      break;
+    case "schedule":
+      ScheduleWrapper.style.display = "block";
+      ScheduleNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      ScheduleNav.style.color = "white";
+      break;
+    case "about":
+      AboutWrapper.style.display = "block";
+      AboutNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      AboutNav.style.color = "white";
+      break;
+    case "feedback":
+      FeedbackWrapper.style.display = "block";
+      FeedbackNav.style.backgroundColor = "rgb(84, 78, 251) !important";
+      FeedbackNav.style.color = "white";
+      break;
+  }
+
+  // After switching tab, also update theme styles in case theme is dark
+  setTheme(document.body.classList.contains("dark"));
 }
+
 
 // Click events
 SessionNav.addEventListener("click", () => switchTab("session"));
@@ -306,22 +201,112 @@ inputs.forEach(e => {
 });
 
 // Theme toggle
+
+const navitems = document.querySelectorAll(".nav-item");
+
+navitems.forEach(item => {
+  item.addEventListener("click", () => {
+    // Remove ActiveDark from all nav items first
+    navitems.forEach(i => i.classList.remove("ActiveDark"));
+
+    // Only add ActiveDark if dark mode is active
+    if (document.body.classList.contains("dark")) {
+      item.classList.add("ActiveDark");
+    }
+  });
+});
+
+
 function setTheme(isDark) {
-    document.body.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
-    document.body.style.color = isDark ? "rgb(199, 199, 199)" : "black";
-    document.body.classList.toggle('dark');
-     EveryInput.forEach(input => {
-        input.style.color = isDark ? "rgb(121, 121, 121)" : "black";
-        input.style.backgroundColor = isDark ? "rgb(87, 87, 87)" : "white";
-    });
-    MenuCont.style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
-    notActiveToggle.style.display = isDark ? "none" : "flex";
-    Menu.style.color = isDark ? "white" : "black";
-    ActiveToggle.style.display = isDark ? "flex" : "none";
-    taskInput.style.color = isDark ? "rgb(199, 199, 199)" : "black";
-    document.querySelector(".calculator").style.backgroundColor = isDark ? "rgb(100, 100, 100)" : "white";
-    fileNameDisplay.style.color = isDark ? "rgb(182, 182, 182)" : "gray";
+  document.body.classList.toggle("dark", isDark);
+
+  notActiveToggle.style.display = isDark ? "none" : "flex";
+  ActiveToggle.style.display = isDark ? "flex" : "none";
+
+  // Reset all tabs to default light/dark colors
+  const navTabs = [SessionNav, CalculatorNav, HistoryNav, TodoNav, ScheduleNav, AboutNav, FeedbackNav];
+  
+  navTabs.forEach(tab => {
+    if (isDark) {
+      tab.style.backgroundColor = "white";  // default non-active dark mode bg
+      tab.style.color = "black";             // default non-active dark mode text
+    } else {
+      tab.style.backgroundColor = "white";  // default light mode bg
+      tab.style.color = "black";             // default light mode text
+    }
+  });
+
+  // Now set active tab style depending on dark or light mode
+  if (isDark) {
+    // Active tab gets blue background + white text in dark mode
+    switch (activeTab) {
+      case "session":
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.color = "white";
+        break;
+      case "calculator":
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        CalculatorNav.style.color = "white";
+        break;
+      case "history":
+        HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+        HistoryNav.style.color = "white";
+        break;
+      case "todo":
+        TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
+        TodoNav.style.color = "white";
+        break;
+      case "schedule":
+        ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
+        ScheduleNav.style.color = "white";
+        break;
+      case "about":
+        AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
+        AboutNav.style.color = "white";
+        break;
+      case "feedback":
+        FeedbackNav.style.backgroundColor = "rgb(84, 78, 251)";
+        FeedbackNav.style.color = "white";
+        break;
+    }
+  } else {
+    // Light mode active tab style (looks like your original switchTab)
+    switch (activeTab) {
+      case "session":
+        SessionNav.style.backgroundColor = "rgb(84, 78, 251)";
+        SessionNav.style.color = "white";
+        break;
+      case "calculator":
+        CalculatorNav.style.backgroundColor = "rgb(84, 78, 251)";
+        CalculatorNav.style.color = "white";
+        break;
+      case "history":
+        HistoryNav.style.backgroundColor = "rgb(84, 78, 251)";
+        HistoryNav.style.color = "white";
+        break;
+      case "todo":
+        TodoNav.style.backgroundColor = "rgb(84, 78, 251)";
+        TodoNav.style.color = "white";
+        break;
+      case "schedule":
+        ScheduleNav.style.backgroundColor = "rgb(84, 78, 251)";
+        ScheduleNav.style.color = "white";
+        break;
+      case "about":
+        AboutNav.style.backgroundColor = "rgb(84, 78, 251)";
+        AboutNav.style.color = "white";
+        break;
+      case "feedback":
+        FeedbackNav.style.backgroundColor = "rgb(84, 78, 251)";
+        FeedbackNav.style.color = "white";
+        break;
+    }
+  }
 }
+
+
+
+
 
 notActiveToggle.addEventListener("click", () => setTheme(true));
 ActiveToggle.addEventListener("click", () => setTheme(false));
@@ -641,7 +626,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // version
 
 const Version = document.querySelector(".Version");
-const fullVer = "Version:v1.4.2";
+const fullVer = "Version:v1.5.3";
 const parts = fullVer.split(":");
 
 // Add a space after the colon manually when reconstructing the HTML

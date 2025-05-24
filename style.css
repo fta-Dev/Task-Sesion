@@ -287,6 +287,7 @@ body.led-on::before {
   cursor: pointer;
 }
 
+
 .Sidebar span i{
     position: relative;
     top: 2px;
@@ -913,3 +914,62 @@ body.dark .feedback-form button {
 body.dark .feedback-form button:hover {
   background-color: #156cc1;
 }
+
+body.dark {
+  background-color: rgb(87, 87, 87);
+  color: rgb(199, 199, 199);
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select {
+  background-color: rgb(87, 87, 87);
+  color: rgb(121, 121, 121);
+}
+
+body.dark .Menu-sidebar {
+  background-color: rgb(113, 113, 113); /* Or whatever dark color you want */
+}
+
+body.dark #MenuCont{
+    background-color: gray;
+}
+
+body.dark .Sidebar {
+  color: white;
+}
+
+body.dark .calculator {
+  background-color: rgb(100, 100, 100);
+}
+
+body.dark #fileNameDisplay {
+  color: rgb(182, 182, 182);
+}
+
+body.dark #taskInput {
+  color: rgb(199, 199, 199);
+}
+
+body.dark .Menu {
+  color: white;
+}
+body.dark .Menu:hover {
+  color: rgb(201, 201, 201);
+}
+
+body.dark .nav-item {
+  background-color: rgb(113, 113, 113) !important;
+  color: white;
+}
+
+body.dark .nav-item:hover {
+  background-color: rgb(82, 82, 82) !important;
+  color: white;
+}
+
+body.dark .nav-item.ActiveDark {
+  background-color: rgb(84, 78, 251) !important;
+  color: white !important;
+}
+
